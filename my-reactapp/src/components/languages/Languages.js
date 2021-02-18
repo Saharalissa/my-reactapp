@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import ReactDom from 'react-dom';
 import LocalizedStrings from 'react-localization';
-import written from '../translations/index';
 
 var english =require("../translations/en.json");
 var arabic =require("../translations/ar.json");
@@ -33,7 +31,6 @@ string.setLanguage(language);
                )
            }
            <div>{string.header}</div>
-           
          </div>
         )
 

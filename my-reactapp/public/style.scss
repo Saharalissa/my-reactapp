@@ -1,0 +1,220 @@
+// Variables
+$header-color:#00c7b1;
+$paragraph-font-color: #888;
+$paragraph-font-size: 14px;
+$paragraph-font-family: "source sans pro", sans-serif;
+/* General */
+body {
+    max-width: 1400px;
+    margin: 0 auto;
+    // display: flex;
+    // justify-content: center;
+}
+h2 {
+   color: $header-color;
+   font-weight: 300;
+}
+// first picture background
+.bg{
+    position: relative; 
+    color: white;  
+    font-family: "open sans", sans-serif;
+    font-size: 27px;
+    line-height: 47px;
+    letter-spacing: 15px;
+    // margin: 0 0 20px;
+    // padding: 20px 20px 10px;
+    width: 100%;
+    @media screen and (max-width: 839px) {
+        display: none;
+    }
+}
+.bg-mobile {
+    display:none;
+    @media screen and (max-width: 839px) {
+    display: block;
+    position: relative; 
+    color: white;  
+    font-family: "open sans", sans-serif;
+    font-size: 27px;
+    line-height: 47px;
+    letter-spacing: 15px;
+    width: 100%; 
+    }
+ 
+}
+.cover {
+    width: 100%;
+    height: auto; 
+    filter: brightness(60%);
+    @media screen and (max-width: 839px) {
+        width: 100%;
+       }
+}
+.inside {
+   position: absolute;
+   top: 75%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   @media screen and (max-width: 839px) {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   }
+}
+/* web1 */
+.paragraph {
+    font-size:$paragraph-font-size;
+    font-family: $paragraph-font-family;
+    color:$paragraph-font-color;
+    text-align: center;
+    width: 100%;
+}
+
+.braces-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    grid-gap: 1em;
+}
+.main-list-grid {
+    display: grid;
+    grid-template-rows: 0.5fr 0.5fr;
+    grid-row-gap: 0.15em;
+    div{
+        font-family: $paragraph-font-family;
+        font-size: $paragraph-font-size;
+        color: $paragraph-font-color;
+    }
+    p{
+        color: black;
+    }
+}
+.list-grid {
+    display: grid;
+    grid-template-columns: 2fr 6fr;
+    grid-gap: 1em;
+    align-items: center;
+    text-align: left;
+}
+.img {
+    margin: 0 auto;
+}
+.check {
+   background: transparent;
+   margin: 0 auto;
+   width: 25%;   
+}
+.list {
+    display: grid;
+    align-items: center;
+}
+
+.mobile1 {
+    display: none;
+}
+// mobile1
+@media screen and (max-width: 839px) {
+.web1 {
+    display: none;
+}
+.mobile1 {
+    display: block;
+}
+.braces-grid {
+    display: grid;
+    grid-template-columns: 0.25fr 6fr 0.25fr;
+    grid-gap: 1em;
+}
+.main-list-grid {
+    display: grid;
+    grid-template-rows: 0.5fr 0.5fr;
+    grid-row-gap: 0.15em;
+}
+.list-grid {
+    display: grid;
+    grid-template-columns: 2fr 6fr;
+    grid-gap: 1em;
+    align-items: center;
+    text-align: left;
+}
+.img {
+    display: grid;
+    grid-template-columns: 0.5fr 6fr 0.5fr;
+}
+.check {
+   background: transparent;
+   margin: 0 auto;
+   width: 25%;   
+}
+.list {
+    display: grid;
+    align-items: center;
+}
+
+}
+// web & mobile 3
+// ------------------
+.line {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+}
+h2::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 120px;
+    background-color: rgba(0,0,0,.1);
+    margin: 10px auto;
+}
+.img-grid {
+    background-color: transparent;
+    margin: 0 auto;
+    width: 14%;
+    @media screen and (max-width: 839px) {
+        width: 25%;
+    }
+}
+.img-grid-photo {
+    background-color: transparent;
+    margin: 0 auto;
+    width: 55%;
+    position: 'absolute';
+    @media screen and (max-width: 839px) {
+        width: 75%;
+    }
+}
+.text-grid {
+    margin: 0 auto;
+    font-family:$paragraph-font-family ;
+    font-size:$paragraph-font-size ;
+    color:$paragraph-font-color;
+}
+
+.div-grid{
+    position: relative; 
+    // text-align: center;
+    color: white;  
+    font-family: "open sans", sans-serif;
+    font-size: 27px;
+    line-height: 47px;
+    letter-spacing: 15px;
+    margin: 0 0 20px;
+    padding: 20px 20px 10px;
+}
+.inside-grid{   
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+// ------------------
+.video{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    @media screen and (max-width: 839px) {
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+    }
+}
