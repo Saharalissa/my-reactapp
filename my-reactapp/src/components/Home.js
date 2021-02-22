@@ -5,23 +5,26 @@ import check from '../images/check.png';
 import cover from '../images/cover.png'
 import coverMobile from '../images/cover-mobile.jpg'
 import Comparison from './comparison';
-import How from './how'
+import How from './how';
+import ScrollPicture from './scrollPicture';
+import ScrollBraces from './scrollBeaces';
+import Testimonials from './testimonials'
 
 
  function Home() {
  return (
 <div>
-    {/* web first background */}
+    {/* web background */}
     <div className="bg">
         <img src={cover} className="cover"/>
         <div className="inside">EON ALIGNER. THE DIFFERENCE IS CLEAR</div>
     </div>
-    {/* mobile first background */}
+    {/* mobile background */}
     <div className="bg-mobile">
         <img src={coverMobile} className="cover"/>
         <div className="inside">EON ALIGNER. THE DIFFERENCE IS CLEAR</div>
     </div>
-    {/* Web1 */}
+    {/* Web2 */}
     <div className="web1">
     <div style={{justifyContent: 'center', alignItems: 'center'}}>
     <h2>WHAT IS EON ALIGNER?</h2>
@@ -94,7 +97,7 @@ import How from './how'
         <div></div>
     </div>
     </div>
-    {/* Mobile1 */}
+    {/* Mobile2 */}
     <div className="mobile1">
     <div className="img">
         <div></div>
@@ -161,23 +164,24 @@ import How from './how'
                  </div>   
             </div><br/>
         </div>
-
         <div></div>
     </div>
  </div>
+ {/* web & mobile 3 */}
  <div className="video">
      <div></div>
      <ReactPlayer  controls url="https://www.youtube.com/embed/HGTKprKwCRc?rel=0&showinfo=0?&hl=en&cc_lang_pref=en&cc_load_policy=1"/>
     <div></div>
 </div>
 {/* web & mobile 4 */}
-<div>
-    <Home/>
-</div>
-  {/* web & mobile 3 */}
-  <div>
- <Comparison/>
- </div>
+<div><How/></div>
+ {/* web & mobile 5 */}
+ <div><ScrollPicture/></div>
+  {/* web & mobile 6 */}
+  <div><Comparison/></div>
+   {/* web & mobile 7 */}
+  <div><ScrollBraces/></div>
+  <div><Testimonials/></div>
 </div>
  )
  } 

@@ -1,4 +1,9 @@
 /* General */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
   max-width: 1400px;
   margin: 0 auto;
@@ -73,7 +78,7 @@ h2 {
   }
 }
 
-/* web1 */
+/* web2 */
 .paragraph {
   font-size: 14px;
   font-family: "source sans pro", sans-serif;
@@ -194,6 +199,77 @@ h2 {
   }
 }
 
+.braces-grid-how {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr 3fr 3fr 1fr;
+      grid-template-columns: 1fr 3fr 3fr 3fr 1fr;
+  grid-gap: 3em;
+}
+
+.braces-grid-how img {
+  width: 90%;
+}
+
+@media screen and (max-width: 839px) {
+  .braces-grid-how {
+    display: none;
+  }
+}
+
+.braces-grid-how-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 839px) {
+  .braces-grid-how-mobile {
+    display: block;
+  }
+  .braces-grid-how-mobile img {
+    width: 40%;
+  }
+}
+
+.button {
+  background-color: rgba(0, 199, 177, 0.85);
+  border-color: #00c7b1;
+  margin: 15px 15px 0;
+  padding: 9px 14px;
+  color: #fff;
+  font-size: 11px;
+}
+
+@media screen and (max-width: 839px) {
+  .button {
+    padding: 9px 14px;
+    font-size: 9px;
+  }
+}
+
+.braces-grid-how-button {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr 1fr;
+      grid-template-columns: 1fr 3fr 1fr;
+  grid-gap: 3em;
+}
+
+@media screen and (max-width: 839px) {
+  .braces-grid-how-button {
+    display: none;
+  }
+}
+
+.braces-grid-how-button-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 839px) {
+  .braces-grid-how-button-mobile {
+    display: inline-block;
+  }
+}
+
 .line {
   display: -ms-grid;
   display: grid;
@@ -278,5 +354,169 @@ h2::after {
             justify-content: center;
     margin: 20px auto;
   }
+}
+
+.ladyScroll {
+  position: 'relative';
+  height: 400px;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+@media screen and (max-width: 839px) {
+  .ladyScroll {
+    display: none;
+  }
+}
+
+.ladyScroll-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 839px) {
+  .ladyScroll-mobile {
+    display: block;
+    min-width: 100%;
+    max-width: none;
+    min-height: 100%;
+    position: 'relative';
+    margin-top: 30px;
+  }
+}
+
+.parallax1 {
+  width: 100%;
+  height: 350px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: center;
+  -webkit-filter: brightness(70%);
+          filter: brightness(70%);
+}
+
+@media screen and (max-width: 839px) {
+  .parallax1 {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    margin-top: 0px;
+    background-position: 0% 0%;
+    background-size: center;
+    -webkit-filter: brightness(70%);
+            filter: brightness(70%);
+  }
+}
+
+.insideParallax1 {
+  position: absolute;
+  color: #fff;
+  top: 30%;
+  left: 10%;
+  text-align: left;
+  line-height: 30px;
+  font-size: 24px;
+}
+
+@media screen and (max-width: 839px) {
+  .insideParallax1 {
+    letter-spacing: 0.05em;
+    line-height: 1.715;
+    top: 30%;
+    left: 5%;
+  }
+}
+
+.insideParallax2 {
+  position: absolute;
+  color: #fff;
+  top: 50%;
+  left: 5%;
+  text-align: left;
+  line-height: 30px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 839px) {
+  .insideParallax2 {
+    letter-spacing: 0.05em;
+    line-height: 1.715;
+    top: 35%;
+    left: 5%;
+  }
+}
+
+.portfoilo {
+  max-width: 1400px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.container {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.overlay-image {
+  display: block;
+  max-width: 100%;
+}
+
+.overlay-image:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+  opacity: 0;
+  background-color: #00c7b1;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay-text {
+  color: #888;
+  font-family: "source sans pro", sans-serif;
+  position: absolute;
+  bottom: 0;
+  padding: 10px 15px 20px 15px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  background-color: #303030;
+  text-align: left;
+}
+
+.overlay-text h3 {
+  font-family: "source sans pro", sans-serif;
+  color: white;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.overlayDown {
+  height: 0;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: #00c7b1;
+}
+
+.container:hover .overlayDown {
+  height: 100%;
 }
 /*# sourceMappingURL=style.css.map */
