@@ -1,9 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Form from './form';
 // This component is for 1_2 smile funnel
-function Card () {
+function Card ({data, cardIndex }) {
+    const [status, setStatus] = useState(false);
     return (
         <div>
-            hello
+            {data[cardIndex].map(item => (
+            <div className="card">
+                <div onClick={() => setStatus(true)}>{item.Mild}</div>
+                <div onClick={() => setStatus(true)}>{item.Moderate}</div>
+                <div onClick={() => setStatus(true)}>{item.Severe}</div>
+            </div> 
+            ))}
+           {/* <Form/> */}
+           <div> 
+                {status === true && <Form/>}
+                {/* {status === false && null}         */}
+            </div>
+
         </div>
     )
 }
