@@ -5,6 +5,7 @@ import ReactDom from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
 import Languages from './components/languages/Languages';
 import Home from './components/Home';
+import Quality from './components/quality';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/"><Redirect to="/home" /></Route>
         {/* <Route exact path="/:language" component={Languages} key={"/:language"} /> */}
         <Route exact path="/home" component={Home} />
+        <Route exact path="/quality" component={Quality} />
       </Router>
     </div>
   );
