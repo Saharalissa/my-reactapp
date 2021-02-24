@@ -16,9 +16,12 @@ function Card ({data, cardIndex}) {
                 <div onClick={() => {setStatus(true); setSeverity("Mild"); setTitle(item.title); setType("standard")}} key = {0}>{item.Mild}</div>
                 <div onClick={() => {setStatus(true); setSeverity("Moderate"); setTitle(item.title); setType("standard")}}  key = {1}>{item.Moderate}</div>
                 <div onClick={() => {setStatus(true); setSeverity("Severe"); setTitle(item.title); setType("plus")}}  key = {2}>{item.Severe}</div>
+                <div onClick={() => {setStatus(true); setSeverity("Severe"); setTitle(item.title); setType("plus")}}  key = {3}>{item.malocclusionType}</div>
+                <div onClick={() => {setStatus(true); setSeverity("Severe"); setTitle(item.title); setType("plus")}}  key = {4}>{item.output}</div>
                 {console.log(severity)}
            </div>
             ))}
+
            <div> 
                 {/* {status === true && <Form/>} */}
                 {/* {status === false && null} */}

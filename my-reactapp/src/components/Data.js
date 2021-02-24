@@ -28,5 +28,15 @@ export default [
         Mild: <img src={mild3}/>,
         Moderate: <img src={moderate3}/>,
         Severe: <img src={severe3}/>
+    }],
+    [{
+        title:"Bite issue",
+        malocclusionType: "Bite issue",
+        caseSeverity: "Severe",
+        caseType: "plus"     
+    }],
+    [{
+        title:"OtherIssue",
+        output: <input placeholder="In a few words, tell us about the issue"/>
     }]
 ];

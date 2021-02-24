@@ -1,7 +1,8 @@
 import React from 'react';
 import check from '../images/check2.png';
 import trans from '../images/trans.png';
-import nice from '../images/NicePng_teeth-png_317146.png'
+import nice from '../images/NicePng_teeth-png_317146.png';
+import logo from '../images/cross.jpg';
 
 function Comparison (props) {
     return (
@@ -46,7 +47,7 @@ function Comparison (props) {
               <div></div>
           <img src={check} className="img-grid"/>
           <p className="text-grid">Removable</p>
-          <img src={check} className="img-grid"/>
+          <img src={logo} className="img-grid"/>
               <div></div>
           </div> 
           <hr
@@ -57,7 +58,7 @@ function Comparison (props) {
               <div></div>
           <img src={check} className="img-grid"/>
           <p className="text-grid">Clear and transparent</p>
-          <img src={check} className="img-grid"/>
+          <img src={logo} className="img-grid"/>
               <div></div>
           </div> 
           <hr
@@ -68,7 +69,7 @@ function Comparison (props) {
               <div></div>
           <img src={check} className="img-grid"/>
           <p className="text-grid">Gentle on gums and soft tisue</p>
-          <img src={check} className="img-grid"/>
+          <img src={logo} className="img-grid"/>
               <div></div>
           </div> 
           <hr
