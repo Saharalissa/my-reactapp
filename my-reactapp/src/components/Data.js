@@ -12,16 +12,19 @@ import severe3 from '../images/funnel3/spacing/severe.jpg';
 
 export default [
     [{
+        title:"Crowded",
         Mild: <img src={mild}/>,
         Moderate: <img src={moderate}/>,
         Severe: <img src={severe}/>
     }],
     [{
+        title:"CrossBite",
         Mild: <img src={mild2}/>,
         Moderate: <img src={moderate2}/>,
         Severe: <img src={severe2}/>
     }],
     [{
+        title:"Spaced",
         Mild: <img src={mild3}/>,
         Moderate: <img src={moderate3}/>,
         Severe: <img src={severe3}/>

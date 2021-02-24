@@ -10,18 +10,20 @@ function Quality () {
     return (
         <div>
             <nav>
-                <img src ={crowded} onClick={()=> setActive("FirstCard")}/>
+                <img src ={crowded} onClick={()=> setActive("Crowded")}/>
                 <div>Crowded</div>
-                <img src ={crossbite} onClick={()=> setActive("SecondCard")}/>
+                <img src ={crossbite} onClick={()=> setActive("CrossBite")}/>
                 <div>Crossbite</div>
-                <img src ={spacing} onClick={()=> setActive("ThirdCard")}/>
-                <div>spacing</div>
+                <img src ={spacing} onClick={()=> setActive("Spaced")}/>
+                <div>spaced</div>
+                {console.log(active)}
             </nav>
         <div> 
-                {active === "FirstCard" && <Card data={Data} cardIndex={0}/>}
-                {active === "SecondCard" && <Card data={Data} cardIndex={1}/>}
-                {active === "ThirdCard" && <Card data={Data} cardIndex={2}/> }         
-            </div>
+                {active === "Crowded" && <Card data={Data} cardIndex={0}/>}
+                {active === "CrossBite" && <Card data={Data} cardIndex={1}/>}
+                {active === "Spaced" && <Card data={Data} cardIndex={2}/> }
+                {console.log(Data)} 
+        </div>
         </div>
     )
 }
