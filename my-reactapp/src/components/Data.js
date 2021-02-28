@@ -10,24 +10,26 @@ import mild3 from '../images/funnel3/spacing/mild.jpg';
 import moderate3 from '../images/funnel3/spacing/moderate.jpg';
 import severe3 from '../images/funnel3/spacing/severe.jpg';
 
+// here we used inline styling because it dis not work with the css file
+// style={{margin: 'auto', borderRadius: '5px', width: '200px', height: '100px', objectFit: 'cover'}} 
 export default [
     [{
         title:"Crowded",
-        Mild: <img src={mild}/>,
-        Moderate: <img src={moderate}/>,
-        Severe: <img src={severe}/>
+        Mild: <div><img  src={mild}/><span class="label">Mild</span></div>,
+        Moderate: <div><img src={moderate}/><span class="label">Moderate</span></div>,
+        Severe: <div><img src={severe}/><span class="label">Severe</span></div>
     }],
     [{
         title:"CrossBite",
-        Mild: <img src={mild2}/>,
-        Moderate: <img src={moderate2}/>,
-        Severe: <img src={severe2}/>
+        Mild: <div><img  src={mild2}/><span class="label">Mild</span></div>,
+        Moderate: <div><img src={moderate2}/><span class="label">Moderate</span></div>,
+        Severe: <div><img src={severe2}/><span class="label">Severe</span></div>
     }],
     [{
         title:"Spaced",
-        Mild: <img src={mild3}/>,
-        Moderate: <img src={moderate3}/>,
-        Severe: <img src={severe3}/>
+        Mild: <div><img  src={mild3}/><span class="label">Mild</span></div>,
+        Moderate: <div><img src={moderate3}/><span class="label">Moderate</span></div>,
+        Severe: <div><img src={severe3}/><span class="label">Severe</span></div>
     }],
     [{
         title:"Bite issue",
