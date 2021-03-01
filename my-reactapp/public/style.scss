@@ -593,7 +593,121 @@ h2::after {
 // }
 }
 
+//card component
+.error {
+    font-size: 10px;
+    color: red;
+}
+.form_grid{
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1em;
+    max-width: 1068px;
+}
+.form_row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+.col {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+// .form-row>.col {
+//     padding-right: 5px;
+//     padding-left: 5px;
+// }
+.form-control {
+    font-size: 1em;
+    width: 100%;
+    border-radius: .5em!important;
+    border: none!important;
+    background-color: rgba(92,98,102,.09)!important;
+        display: block;
+        width: 100%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
-
-
-
+.form-button{
+    justify-self: start;
+}
+.submit-form-button-1 {
+    justify-self: start;
+    background-color: #3dcdba;
+    text-align: center;
+    border: none;
+    border-radius: .5em;
+    color: #fff;
+    font-size: 0.75em;
+    padding: .75em;
+    width: 280px!important;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.disclaimer_text{
+    display: flex;
+    justify-content: flex-start;
+    color: #0e1b22;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 29px;
+}
+.section3{
+    display: grid;
+    grid-template-columns: auto 6fr;
+    justify-self: start;
+    max-width: 1068px;
+    @media screen and (max-width: 839px) {
+        display: none;
+    }
+}
+.input-container{
+    position: relative;
+    box-sizing: border-box;
+}
+.form-control-inside{
+    background-color: rgba(92, 98, 102, 0.086);
+    border-radius: 0.5em;
+    cursor: default;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    min-height: 38px;
+    position: relative;
+    transition: all 100ms ease 0s;
+    box-sizing: border-box;
+    border: none;
+    font-size: 1em;
+    outline: 0px !important;
+}
+.form-control-outside{
+    background-color: rgba(92, 98, 102, 0.086);
+    border-radius: 0.5em;
+    cursor: default;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    min-height: 38px;
+    position: relative;
+    transition: all 100ms ease 0s;
+    box-sizing: border-box;
+    border: none;
+    font-size: 1em;
+    outline: 0px !important;
+}
