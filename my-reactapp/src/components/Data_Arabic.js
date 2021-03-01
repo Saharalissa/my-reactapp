@@ -15,21 +15,21 @@ import severe3 from '../images/funnel3/spacing/severe.jpg';
 export default [
     [{
         title:"Crowded",
-        Mild: <div><img  src={mild}/><div style={{ background: '#f1f5fc'}}>بسيط</div></div>,
-        Moderate: <div><img src={moderate}/><div style={{   background: '#f1f5fc'}}>معتدل</div></div>,
-        Severe: <div><img src={severe}/><div style={{   background: '#f1f5fc'}}>متقدم</div></div>
+        Mild: <div style={{ background: '#f1f5fc'}}><img  src={mild}/><div>بسيط</div></div>,
+        Moderate: <div style={{ background: '#f1f5fc'}}><img src={moderate}/><div>معتدل</div></div>,
+        Severe: <div style={{ background: '#f1f5fc'}}><img src={severe}/><div>متقدم</div></div>
     }],
     [{
         title:"CrossBite",
-        Mild: <div><img  src={mild2}/><div style={{   background: '#f1f5fc'}}>بسيط</div></div>,
-        Moderate: <div><img src={moderate2}/><div style={{   background: '#f1f5fc'}}>معتدل</div></div>,
-        Severe: <div><img src={severe2}/><div style={{   background: '#f1f5fc'}}>متقدم</div></div>
+        Mild: <div style={{ background: '#f1f5fc'}}><img  src={mild2}/><div>بسيط</div></div>,
+        Moderate: <div style={{ background: '#f1f5fc'}}><img src={moderate2}/><div>معتدل</div></div>,
+        Severe: <div style={{ background: '#f1f5fc'}}><img src={severe2}/><div>متقدم</div></div>
     }],
     [{
         title:"Spaced",
-        Mild: <div><img  src={mild3}/><div style={{   background: '#f1f5fc'}}>بسيط</div></div>,
-        Moderate: <div><img src={moderate3}/><div style={{   background: '#f1f5fc'}}>معتدل</div></div>,
-        Severe: <div><img src={severe3}/><div style={{   background: '#f1f5fc'}}>متقدم</div></div>
+        Mild: <div style={{ background: '#f1f5fc'}}><img  src={mild3}/><div>بسيط</div></div>,
+        Moderate: <div style={{ background: '#f1f5fc'}}><img src={moderate3}/><div>معتدل</div></div>,
+        Severe: <div style={{ background: '#f1f5fc'}}><img src={severe3}/><div>متقدم</div></div>
     }],
     [{
         title:"Bite issue",

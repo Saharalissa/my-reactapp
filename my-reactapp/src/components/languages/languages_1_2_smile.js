@@ -25,7 +25,7 @@ string.setLanguage(language);
                ) : (
                <button><a  href="/quality_arabic">Arabic</a></button>
                )
-           }
+            }
 
            <div>{
                (language === "quality")?(
@@ -34,7 +34,7 @@ string.setLanguage(language);
                <Quality_Arabic/>
                )
            }</div>
-      
+
         </div>
          ) }
 

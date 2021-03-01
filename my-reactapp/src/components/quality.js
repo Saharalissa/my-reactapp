@@ -40,7 +40,7 @@ function Quality () {
                 <div>spaced</div></div>
                 <div className="box"><img src ={bite_issue} onClick={()=> setActive("Bite-issue")} className="quality-img"/>
                 <div>Bite-issue</div></div>
-                <div className="box" onClick={()=> setActive("OtherIssue")}><p>I have another issue</p></div>
+                <div className="box" onClick={()=> setActive("OtherIssue")}><p style={{margin: '35px auto'}}>I have another issue</p></div>
                 {console.log(active)}
             </nav>
         <div> 

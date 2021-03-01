@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Card from './card';
+import Card_arabic from './card_arabic';
 import Data from './Data_Arabic';
 import crowded from '../images/funnel3/crowded.png';
 import crossbite from '../images/funnel3/crossbite.png';
@@ -12,7 +12,7 @@ function Quality_Arabic () {
     
 
     return (
-        <div className="quality-body">
+        <div className="quality-body-arabic">
             <div></div>
             <div>
             <div className="logo-grid">
@@ -41,7 +41,7 @@ function Quality_Arabic () {
                 <div>أسنان متباعدة</div></div>
                 <div className="box"><img src ={bite_issue} onClick={()=> setActive("اطباق الأسنان")} className="quality-img"/>
                 <div>اطباق الأسنان</div></div>
-                <div className="box" onClick={()=> setActive("لدي مشكلة أخرى")}><p>لدي مشكلة أخرى</p></div>
+                <div className="box" onClick={()=> setActive("لدي مشكلة أخرى")}><p style={{margin: '35px auto'}}>لدي مشكلة أخرى</p></div>
                 {console.log(active)}
             </nav>
         <div> 
@@ -54,11 +54,11 @@ function Quality_Arabic () {
                 {(active === "المزدحمة" || active === "المتباعدة" ) && <div className="section1_mobile"><p className="secion1_q">2.اختر أفضل صورة تصف أسنانك <b>{active}</b></p></div>}
                 {( active === "المعكوسة" ) && <div className="section1_mobile"><p className="secion1_q">2.اختر أفضل صورة تصف عضتك <b>{active}</b></p></div>}
                 {/* this is to display the related picture for each case */}
-                {active === "المزدحمة" && <Card data={Data} cardIndex={0}/>}
-                {active === "المعكوسة" && <Card data={Data} cardIndex={1}/>}
-                {active === "المتباعدة" && <Card data={Data} cardIndex={2}/>}
-                {active === "اطباق الأسنان" &&  <button onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button>}
-                {active === "لدي مشكلة أخرى" &&  <div><div className = "textAreaGrid"><div className="circle">2</div><textarea className= "textArea" type="text" rows="6" placeholder="اشرح لنا الحالة في عدة كلمات"></textarea></div><br/><button onClick={() => {console.log("malocclusionType:","OtherIssue"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button></div>}
+                {active === "المزدحمة" && <Card_arabic data={Data} cardIndex={0}/>}
+                {active === "المعكوسة" && <Card_arabic data={Data} cardIndex={1}/>}
+                {active === "المتباعدة" && <Card_arabic data={Data} cardIndex={2}/>}
+                {active === "اطباق الأسنان" &&  <button onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>إحصل على نتائج التقييم</button>}
+                {active === "لدي مشكلة أخرى" &&  <div><div className = "textAreaGrid"><div className="circle">2</div><textarea className= "textArea" type="text" rows="6" placeholder="اشرح لنا الحالة في عدة كلمات"></textarea></div><br/><button onClick={() => {console.log("malocclusionType:","OtherIssue"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>إحصل على نتائج التقييم</button></div>}
                 {console.log(Data)} 
         </div>
         </div>

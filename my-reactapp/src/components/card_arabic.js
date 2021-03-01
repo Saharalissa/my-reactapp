@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import Form from './form';
+// THE PURPOSE OF THIS COMPONENT IS ONLY ONLY ONLY TO ADD THE ARABIC SUBMIT BUTTON (احصل على نتائج التقييم)
 // This component is for 1_2 smile funnel
-function Card_arabic ({props, data, cardIndex}) {
+function Card ({props, data, cardIndex}) {
     const [status, setStatus] = useState(false);
     const [severity, setSeverity] = useState("");
     // title from Card component = active from Quality component
@@ -28,10 +29,10 @@ function Card_arabic ({props, data, cardIndex}) {
            <div> 
                 {/* {status === true && <Form/>} */}
                 {/* {status === false && null} */}
-                {status === true && <button onClick={() => {console.log("malocclusionType:",title); console.log("caseSeverity:",severity); console.log("caseType:", type ); }}>Get Results</button>}
+                {status === true && <button onClick={() => {console.log("malocclusionType:",title); console.log("caseSeverity:",severity); console.log("caseType:", type ); }}>احصل على نتائج التقييم</button>}
            </div>
         </div>
     )
 }
 
-export default Card_arabic;
+export default Card;
