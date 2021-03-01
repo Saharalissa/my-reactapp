@@ -32,15 +32,15 @@ function Quality () {
                 <p className="secion1_q">1. What’s your biggest concern with your smile?</p>
             </div>
             <nav className="nav-grid">
-                <div className="box"><img src ={crowded} onClick={()=> setActive("Crowded")} className="quality-img"/>
+                <div className="box custom-active"><img src ={crowded} onClick={()=> setActive("Crowded")} className="quality-img"/>
                 <div>Crowded</div></div>
-                <div className="box"><img src ={crossbite} onClick={()=> setActive("CrossBite")} className="quality-img"/>
+                <div className="box custom-active"><img src ={crossbite} onClick={()=> setActive("CrossBite")} className="quality-img"/>
                 <div >Cross-bite</div></div>
-                <div className="box"><img src ={spacing} onClick={()=> setActive("Spaced")} className="quality-img"/>
+                <div className="box custom-active"><img src ={spacing} onClick={()=> setActive("Spaced")} className="quality-img"/>
                 <div>spaced</div></div>
-                <div className="box"><img src ={bite_issue} onClick={()=> setActive("Bite-issue")} className="quality-img"/>
+                <div className="box custom-active"><img src ={bite_issue} onClick={()=> setActive("Bite-issue")} className="quality-img"/>
                 <div>Bite-issue</div></div>
-                <div className="box" onClick={()=> setActive("OtherIssue")}><p style={{margin: '35px auto'}}>I have another issue</p></div>
+                <div className="box custom-active" onClick={()=> setActive("OtherIssue")}><p style={{margin: '35px auto'}}>I have another issue</p></div>
                 {console.log(active)}
             </nav>
         <div> 

@@ -466,8 +466,9 @@ h2::after {
     font-size: 12px;
 }
 }
-.box:active{
-    border-color: blue;
+.custom-active:active{
+    border: 2px solid #aae6de !important;
+    background: #f4fdfb !important;
 }
 .header_1{
     color: #0e1b22;
