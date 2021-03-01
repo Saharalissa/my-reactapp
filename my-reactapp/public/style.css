@@ -618,9 +618,9 @@ h2::after {
   border-radius: 50%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  height: 53px;
-  width: 53px;
-  line-height: 53px;
+  height: 43px;
+  width: 43px;
+  line-height: 43px;
   text-align: center;
   border: 1px solid #e6ecf7;
 }
@@ -684,7 +684,6 @@ h2::after {
 }
 
 .severity-card {
-  background: #f1f5fc;
   border-radius: 4px;
   border: 2px solid transparent;
   color: #000;
@@ -742,5 +741,24 @@ h2::after {
         -ms-flex-align: center;
             align-items: center;
   }
+}
+
+.textAreaGrid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 10fr;
+      grid-template-columns: auto 10fr;
+  grid-column-gap: 24px;
+  margin: 20px 60px;
+}
+
+.textArea {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  width: 80%;
+  border-radius: 8px;
+  border: 1px solid #eeefef;
+  padding: 12px;
 }
 /*# sourceMappingURL=style.css.map */

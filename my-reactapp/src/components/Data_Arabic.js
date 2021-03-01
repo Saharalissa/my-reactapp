@@ -15,21 +15,21 @@ import severe3 from '../images/funnel3/spacing/severe.jpg';
 export default [
     [{
         title:"Crowded",
-        Mild: <div><img  src={mild}/><div style={{ background: '#f1f5fc'}}>Mild</div></div>,
-        Moderate: <div><img src={moderate}/><div style={{   background: '#f1f5fc'}}>Moderate</div></div>,
-        Severe: <div><img src={severe}/><div style={{   background: '#f1f5fc'}}>Severe</div></div>
+        Mild: <div><img  src={mild}/><div style={{ background: '#f1f5fc'}}>بسيط</div></div>,
+        Moderate: <div><img src={moderate}/><div style={{   background: '#f1f5fc'}}>معتدل</div></div>,
+        Severe: <div><img src={severe}/><div style={{   background: '#f1f5fc'}}>متقدم</div></div>
     }],
     [{
         title:"CrossBite",
-        Mild: <div><img  src={mild2}/><div style={{   background: '#f1f5fc'}}>Mild</div></div>,
-        Moderate: <div><img src={moderate2}/><div style={{   background: '#f1f5fc'}}>Moderate</div></div>,
-        Severe: <div><img src={severe2}/><div style={{   background: '#f1f5fc'}}>Severe</div></div>
+        Mild: <div><img  src={mild2}/><div style={{   background: '#f1f5fc'}}>بسيط</div></div>,
+        Moderate: <div><img src={moderate2}/><div style={{   background: '#f1f5fc'}}>معتدل</div></div>,
+        Severe: <div><img src={severe2}/><div style={{   background: '#f1f5fc'}}>متقدم</div></div>
     }],
     [{
         title:"Spaced",
-        Mild: <div><img  src={mild3}/><div style={{   background: '#f1f5fc'}}>Mild</div></div>,
-        Moderate: <div><img src={moderate3}/><div style={{   background: '#f1f5fc'}}>Moderate</div></div>,
-        Severe: <div><img src={severe3}/><div style={{   background: '#f1f5fc'}}>Severe</div></div>
+        Mild: <div><img  src={mild3}/><div style={{   background: '#f1f5fc'}}>بسيط</div></div>,
+        Moderate: <div><img src={moderate3}/><div style={{   background: '#f1f5fc'}}>معتدل</div></div>,
+        Severe: <div><img src={severe3}/><div style={{   background: '#f1f5fc'}}>متقدم</div></div>
     }],
     [{
         title:"Bite issue",

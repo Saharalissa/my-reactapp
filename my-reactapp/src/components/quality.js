@@ -54,8 +54,8 @@ function Quality () {
                 {active === "Crowded" && <Card data={Data} cardIndex={0}/>}
                 {active === "CrossBite" && <Card data={Data} cardIndex={1}/>}
                 {active === "Spaced" && <Card data={Data} cardIndex={2}/>}
-                {active === "Bite-issue" && <Card data={Data} cardIndex={3}/>}
-                {active === "OtherIssue" && <Card data={Data} cardIndex={4}/>}
+                {active === "Bite-issue" &&  <button onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button>}
+                {active === "OtherIssue" &&  <div><div className = "textAreaGrid"><div className="circle">2</div><textarea className= "textArea" type="text" rows="6" placeholder="In a few words, tell us about the issue"></textarea></div><br/><button onClick={() => {console.log("malocclusionType:","OtherIssue"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button></div>}
                 {console.log(Data)} 
         </div>
         </div>

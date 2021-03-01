@@ -7,18 +7,19 @@ function Card ({data, cardIndex}) {
     // title from Card component = active from Quality component
     const [title, setTitle] = useState("");
     const [type, setType] = useState("");
+    const [name, setName] = useState("")
 
     return (
         <div>
-            {data[cardIndex].map(item => (
-            <div className="card">
+            {data[cardIndex].map((item, index) => (
+            <div className="card" key = {index}>
                 {console.log(item.title)}
                 <div></div>               
-                <div className="severity-card" onClick={() => {setStatus(true); setSeverity("Mild"); setTitle(item.title); setType("standard")}} key = {0}>{item.Mild}</div>
-                <div className="severity-card" onClick={() => {setStatus(true); setSeverity("Moderate"); setTitle(item.title); setType("standard")}}  key = {1}>{item.Moderate}</div>
-                <div className="severity-card" onClick={() => {setStatus(true); setSeverity("Severe"); setTitle(item.title); setType("plus")}}  key = {2}>{item.Severe}</div>
-                <div onClick={() => {setStatus(true); setSeverity("Severe"); setTitle(item.title); setType("plus")}}  key = {3}>{item.malocclusionType}</div>
-                <div onClick={() => {setStatus(true); setSeverity("Severe"); setTitle(item.title); setType("plus")}}  key = {4}>{item.output}</div>
+                <div className="severity-card" onClick={() => {setStatus(true); setSeverity("Mild"); setTitle(item.title); setType("standard"); setName("Crowded")}} key = {0}>{item.Mild}</div>
+                <div className="severity-card" onClick={() => {setStatus(true); setSeverity("Moderate"); setTitle(item.title); setType("standard"); setName("CrossBite")}}  key = {1}>{item.Moderate}</div>
+                <div className="severity-card" onClick={() => {setStatus(true); setSeverity("Severe"); setTitle(item.title); setType("plus"); setName("Spaced")}}  key = {2}>{item.Severe}</div>
+                {/* <div  onClick={() => {setStatus(true); setSeverity("Severe"); setTitle(item.title); setType("plus")}}  key = {3}>{item.malocclusionType}</div>
+                <div  onClick={() => {setStatus(true); setSeverity("Severe"); setTitle(item.title); setType("plus")}}  key = {4}>{item.output}</div> */}
                 {console.log(severity)}
                 <div></div>             
            </div>
