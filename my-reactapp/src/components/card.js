@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Form from './form';
-import {useFormik} from 'formik'
+import {useFormik} from 'formik';
 // This component is for 1_2 smile funnel
 function Card_arabic ({props, data, cardIndex}) {
     const [status, setStatus] = useState(false);

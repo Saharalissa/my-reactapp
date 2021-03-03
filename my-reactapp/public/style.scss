@@ -711,3 +711,82 @@ h2::after {
     font-size: 1em;
     outline: 0px !important;
 }
+////////////////////////////////////
+.code{
+    display: grid; grid-template-columns: 1fr 2fr; column-gap: 0.5em; align-items: center; align-content: center;}
+.col-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+.css-2b097c-container{
+position: relative;
+box-sizing: border-box;
+}
+.css-mlsk89-control {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgba(92, 98, 102, 0.086);
+    border-radius: 0.5em;
+    cursor: default;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    min-height: 38px;
+    position: relative;
+    transition: all 100ms ease 0s;
+    box-sizing: border-box;
+    border: none;
+    font-size: 1em;
+    outline: 0px !important;
+}
+.css-1hwfws3 {
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    flex: 1 1 0%;
+    flex-wrap: wrap;
+    padding: 2px 8px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.css-zk88xw-singleValue {
+    color: rgb(51, 51, 51);
+    margin-left: 2px;
+    margin-right: 2px;
+    max-width: calc(100% - 8px);
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    top: 50%;
+    transform: translateY(-50%);
+    box-sizing: border-box;
+    opacity: 1;
+    transition: opacity 300ms ease 0s;
+}
+.css-1g6gooi {
+    margin: 2px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    visibility: visible;
+    color: rgb(51, 51, 51);
+    box-sizing: border-box;
+}
+.css-1wy0on6 {
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+.css-tlfecz-indicatorContainer {
+    color: rgb(204, 204, 204);
+    display: flex;
+    padding: 8px;
+    transition: color 150ms ease 0s;
+    box-sizing: border-box;
+}
+///////////////////////////////////////
