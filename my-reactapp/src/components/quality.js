@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, FontAwesomeIcon} from 'react';
 import Card from './card';
 import Data from './Data';
 import crowded from '../images/funnel3/crowded.png';
@@ -6,9 +6,11 @@ import crossbite from '../images/funnel3/crossbite.png';
 import spacing from '../images/funnel3/spacing.png';
 import bite_issue from '../images/funnel3/bite_issue.png';
 import {Formik, useFormik} from 'formik';
-import Select from 'react-select';
+import Select,  { components } from 'react-select';
 import CustomSelect from './select';
 import CustomSelect2 from './select2';
+import CustomSelect3 from './select3';
+// import queryString from "query-string";
 
 const countries = [     
       { value: "jo", label: "Jordan" },
@@ -35,20 +37,53 @@ const countries = [
       ]
     
 }
+// const includes = require("lodash/includes");
+// let queryParams = queryString.parse(window.location.search);
+// const standardizedCountryCode = (incoming) => {
+//     if (
+//       includes(
+//         ["uae", "ae", "united arabic emirates", "arab emirtaes"],
+//         incoming.toLowerCase()
+//       )
+//     ) {
+//       return "ae";
+//     }
+ 
+//     if (includes(["sa", "saudi", "saudi arabia"], incoming.toLowerCase())) {
+//       return "sa";
+//     }
+ 
+//     if (includes(["jo", "jordan"], incoming.toLowerCase())) {
+//       return "jo";
+//     }
+ 
+//     if (includes(["lb", "lebanon"], incoming.toLowerCase())) {
+//       return "lb";
+//     }
+ 
+//     if (includes(["iq", "iraq"], incoming.toLowerCase())) {
+//       return "iq";
+//     }
+ 
+//     if (includes(["qa", "qatar"], incoming.toLowerCase())) {
+//       return "qa";
+//     }
+ 
+//     if (includes(["kw", "kuwait"], incoming.toLowerCase())) {
+//       return "kw";
+//     }
+ 
+//     return "n/a";
+//   };
+//   !queryParams.country && delete cities2.sa;
 
-const cities= [
-    [{ value: "dubai", label: "Dubai" },{ value: "abudhabi", label: "Abu Dhabi" }],
-    [{ value: "amman", label: "Amman" }],
-    [{ value: "doha", label: "Doha" }],
-    [{ value: "kuwait", label: "Kuwait" }],
-     [
-        { value: "riyadh", label: "Riyadh" },
-        { value: "jeddah", label: "Jeddah" },
-        { value: "khobar", label: "Khobar" },
-        { value: "dhahran", label: "Dhahran" },
-        { value: "dammam", label: "Dammam" },
-      ]
-    ]
+    const countryCodes = [
+        { value: "+962", label: "+962", code: "jo" },
+        { value: "+966", label: "+966", code: "sa" },
+        { value: "+965", label: "+965", code: "kw" },
+        { value: "+974", label: "+974", code: "qa" },
+      ];
+    
 
 // This component is for 1_2 smile funnel
 function Quality () {
@@ -95,6 +130,7 @@ function Quality () {
             Country:'',
             City:'',
             Email:'',
+            countryCode: '',
             PhoneNumber:''
         },
         validate,
@@ -103,6 +139,29 @@ function Quality () {
         }
     })
     const country=formik.values.Country
+
+const countryCodeFromCountry = (country) => {
+    var returnValue = '';
+    countryCodes.forEach((element) => {
+      if (element.code === country) {
+        returnValue = element;
+        console.log(element)
+        return;
+      }
+    });
+
+    return returnValue;    
+  };
+const DropdownIndicator = props => {
+    return (
+      components.DropdownIndicator && (
+        <components.DropdownIndicator {...props}>
+          <FontAwesomeIcon icon={props.selectProps.menuIsOpen ? "caret-up" : "caret-down"}/>
+        </components.DropdownIndicator>
+      )
+    );
+  };
+
     return (
         <div className="quality-body">
             <div></div>
@@ -167,15 +226,18 @@ function Quality () {
                         <div className="form_grid">
                         <div><div className="form-row">
                         <CustomSelect
+                         className="selectCountry"
                          options={countries}
                          value={formik.values.Country}
-                         className='input'
-                         onChange={value=>{formik.setFieldValue('Country', value.value)
-                         formik.setFieldValue('City' ,cities2[value.value] )
+                         onChange={value=>{
+                         formik.setFieldValue('Country', value.value)
+                         formik.setFieldValue('City' ,cities2[value.value][0])
+                        //  formik.setFieldValue('countryCode', formik.values.countryCode) //forEach
+                        formik.setFieldValue('countryCode',countryCodeFromCountry(value.value))
+                        //  this is to hide the error message
                          formik.setFieldTouched('Country' ,false )
-                         
                         }}
-                         
+                        
                          />
                         {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Country} name="Country" placeholder="Country" className="form-control"/> */}
                         {formik.touched.Country && formik.errors.Country? <div className="error">{formik.errors.Country}</div>: null}</div></div>
@@ -188,20 +250,39 @@ function Quality () {
                         onChange={value=>formik.setFieldValue('City', formik.values.City)}
                          />
                             {console.log(formik.values.City)}
-                            
+                         
                         {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
-                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div>
-                        </div>
+                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div> </div>
                         <div className="form_grid">
                         <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Email} name="Email" placeholder="Email" className="form-control"/>
                         {formik.touched.Email && formik.errors.Email? <div className="error">{formik.errors.Email}</div>: null}</div></div>
                         {/* this is for the extention number */}
                         {/* <div className="form-row"><div className="input-container"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.extention} name="extention" placeholder="+962" className="form-control-inside"/><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control-outside"/></div> */}
-                        <div className="form-row">
-                            {/* <Select ></Select> */}
-                            <div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control"/>
-                        {formik.touched.PhoneNumber && formik.errors.PhoneNumber? <div className="error">{formik.errors.PhoneNumber}</div>: null}</div></div></div>
-                        </div>
+                        <div className="form_grid-select"><div className="form-row">
+                        <div>
+                        <CustomSelect3 
+                          components={{ DropdownIndicator }}
+                          style={{
+                            width: "100%",
+                            marginTop: ".25rem",
+                            fontSize: "80%",
+                            color: "#dc3545",
+                            textAlign: "center"
+                          }}
+                        className="select"
+                        options={countryCodes}
+                        value={formik.values.countryCode}
+                        country={formik.values.Country}
+                        onChange={value=>formik.setFieldValue('countryCode',formik.values.countryCode)}
+                         />
+                            {console.log(formik.values.countryCode.value)}
+                         
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
+                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
+                        
+                        <div className="col-select"><input style={{width:'100%'}} onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control"/>
+                        {formik.touched.PhoneNumber && formik.errors.PhoneNumber? <div className="error">{formik.errors.PhoneNumber}</div>: null}</div></div>
+                       </div>
                         <div className="form_grid">
                             <div className= "form-button">
                                 <button className="submit-form-button-1" type="submit" onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button>
@@ -265,6 +346,4 @@ function Quality () {
 }
 
 export default Quality;
-
-//from website elements
 {/* <div className="col-md-4 col-4"><div className=" css-2b097c-container"><div className=" css-mlsk89-control"><div className=" css-1hwfws3"><div className=" css-zk88xw-singleValue"><div className="code">{}</div></div><div className="css-1g6gooi"><div style={{display: "inline-block"}}><input/><div></div></div></div></div><div className=" css-1wy0on6"><span  className="css-opgb5h"></span><div className="area-hidden" className=" css-tlfecz-indicatorContainer"><img/></div></div></div><input name="selectCountryCode" type="hidden" value=""/></div></div> */}

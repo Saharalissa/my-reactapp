@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-const cities = {
+const cities2 = {
   
     ae: [
       { value: "dubai", label: "Dubai" },
@@ -49,20 +49,23 @@ function CustomSelect2({onChange, options, value, country}) {
     
 //function for values of select tag
     const defaultValue = (options, value) => {
-                // if(country === "sa") {
-                //    options=cities.country
-                // }
-                // else if (country === "kw") {
-                //     options = kw
-                // }else if (country === "qa") {
-                //     options = qa
-                // }else if (country === "jo") {
-                //     options = jo
-                // }
+                if(country === "sa") {
+                   options=cities2.sa
+                  console.log(value)
+                  console.log(options)
+                   return options
+                }
+                else if (country === "kw") {
+                    options = cities2.kw
+                }else if (country === "qa") {
+                    options = cities2.qa
+                }else if (country === "jo") {
+                    options = cities2.jo
+                }
+
                 {console.log(value)}
-                return options=cities.country
-                
-    // return options? options.find(option=>option.value === value): ""
+                // return options
+                return options? options.find(option=>option.value === value.value): ""
 }
 
     return (
@@ -70,10 +73,11 @@ function CustomSelect2({onChange, options, value, country}) {
             <Select 
              placeholder="City"
              value={defaultValue(options, value)} 
-             onChange={value=>onChange(options.value)} 
+            // value={cities2.country}
+             onChange={value=>onChange(value)} 
              options={options}
             />
-            {console.log(options)}
+            {console.log(value)}
             {console.log(country)}
             {/* {console.log(cities[1])}
             {console.log(qa[0].value)} */}
