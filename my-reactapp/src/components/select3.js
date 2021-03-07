@@ -1,4 +1,3 @@
-import React from 'react';
 import Select from 'react-select';
 
 const countryCodes = [
@@ -7,6 +6,7 @@ const countryCodes = [
     { value: "+965", label: "+965", code: "kw" },
     { value: "+974", label: "+974", code: "qa" },
   ];
+
 
 function CustomSelect3({onChange, options, value, country, className}) {
     

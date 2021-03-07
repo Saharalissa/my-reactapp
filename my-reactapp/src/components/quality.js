@@ -1,4 +1,5 @@
 import React, {useState, FontAwesomeIcon} from 'react';
+import queryString from "query-string";
 import Card from './card';
 import Data from './Data';
 import crowded from '../images/funnel3/crowded.png';
@@ -10,7 +11,6 @@ import Select,  { components } from 'react-select';
 import CustomSelect from './select';
 import CustomSelect2 from './select2';
 import CustomSelect3 from './select3';
-// import queryString from "query-string";
 
 const countries = [     
       { value: "jo", label: "Jordan" },
@@ -37,44 +37,45 @@ const countries = [
       ]
     
 }
-// const includes = require("lodash/includes");
-// let queryParams = queryString.parse(window.location.search);
-// const standardizedCountryCode = (incoming) => {
-//     if (
-//       includes(
-//         ["uae", "ae", "united arabic emirates", "arab emirtaes"],
-//         incoming.toLowerCase()
-//       )
-//     ) {
-//       return "ae";
-//     }
+const includes = require("lodash/includes");
+
+// fetchDashboardData(urlCountry.country)
+const standardizedCountryCode = (incoming) => {
+    if (
+      includes(
+        ["uae", "ae", "united arabic emirates", "arab emirtaes"],
+        incoming.toLowerCase()
+      )
+    ) {
+      return "ae";
+    }
  
-//     if (includes(["sa", "saudi", "saudi arabia"], incoming.toLowerCase())) {
-//       return "sa";
-//     }
+    if (includes(["sa", "saudi", "saudi arabia"], incoming.toLowerCase())) {
+      return "sa";
+    }
  
-//     if (includes(["jo", "jordan"], incoming.toLowerCase())) {
-//       return "jo";
-//     }
+    if (includes(["jo", "jordan"], incoming.toLowerCase())) {
+      return "jo";
+    }
  
-//     if (includes(["lb", "lebanon"], incoming.toLowerCase())) {
-//       return "lb";
-//     }
+    if (includes(["lb", "lebanon"], incoming.toLowerCase())) {
+      return "lb";
+    }
  
-//     if (includes(["iq", "iraq"], incoming.toLowerCase())) {
-//       return "iq";
-//     }
+    if (includes(["iq", "iraq"], incoming.toLowerCase())) {
+      return "iq";
+    }
  
-//     if (includes(["qa", "qatar"], incoming.toLowerCase())) {
-//       return "qa";
-//     }
+    if (includes(["qa", "qatar"], incoming.toLowerCase())) {
+      return "qa";
+    }
  
-//     if (includes(["kw", "kuwait"], incoming.toLowerCase())) {
-//       return "kw";
-//     }
+    if (includes(["kw", "kuwait"], incoming.toLowerCase())) {
+      return "kw";
+    }
  
-//     return "n/a";
-//   };
+    return "n/a";
+  };
 //   !queryParams.country && delete cities2.sa;
 
     const countryCodes = [
@@ -89,6 +90,21 @@ const countries = [
 function Quality () {
     const [active, setActive] = useState("");
     const [select, setSelect] = useState("");
+    //queryparams ex: "?country=jo" key(country) value(jo)
+    let queryParams = queryString.parse(window.location.search);
+    console.log(queryParams.country)
+
+    let urlCountry = queryParams.country ? queryParams.country : "";
+    let standardCountryCode = standardizedCountryCode(urlCountry);
+
+    var preselectCountry = null;
+
+    countries.forEach((element) => {
+      if (element.value === standardCountryCode) {
+        preselectCountry = element;
+        return;
+      }
+    });
 
     //Validation
     const validate = values => {
@@ -127,8 +143,10 @@ function Quality () {
         initialValues:{
             FirstName:'',
             LastName:'',
-            Country:'',
-            City:'',
+            // Country:'',
+            Country:preselectCountry ? preselectCountry.value : "",
+            // City:'',
+            City: preselectCountry ? cities2[preselectCountry.value][0] : "",
             Email:'',
             countryCode: '',
             PhoneNumber:''
@@ -151,15 +169,6 @@ const countryCodeFromCountry = (country) => {
     });
 
     return returnValue;    
-  };
-const DropdownIndicator = props => {
-    return (
-      components.DropdownIndicator && (
-        <components.DropdownIndicator {...props}>
-          <FontAwesomeIcon icon={props.selectProps.menuIsOpen ? "caret-up" : "caret-down"}/>
-        </components.DropdownIndicator>
-      )
-    );
   };
 
     return (
@@ -261,7 +270,6 @@ const DropdownIndicator = props => {
                         <div className="form_grid-select"><div className="form-row">
                         <div>
                         <CustomSelect3 
-                          components={{ DropdownIndicator }}
                           style={{
                             width: "100%",
                             marginTop: ".25rem",
