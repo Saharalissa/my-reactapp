@@ -1,3 +1,4 @@
+//params: language  queryParams: country
 import React, {useState, FontAwesomeIcon} from 'react';
 import queryString from "query-string";
 import Card from './card';
@@ -93,15 +94,15 @@ function Quality () {
     //queryparams ex: "?country=jo" key(country) value(jo)
     let queryParams = queryString.parse(window.location.search);
     console.log(queryParams.country)
-
+    //default values with "?country=country" these will fill the initial values this is when we have queryparams
     let urlCountry = queryParams.country ? queryParams.country : "";
     let standardCountryCode = standardizedCountryCode(urlCountry);
 
-    var preselectCountry = null;
+    var selectedCountry = null;
 
     countries.forEach((element) => {
       if (element.value === standardCountryCode) {
-        preselectCountry = element;
+        selectedCountry = element;
         return;
       }
     });
@@ -144,9 +145,9 @@ function Quality () {
             FirstName:'',
             LastName:'',
             // Country:'',
-            Country:preselectCountry ? preselectCountry.value : "",
+            Country: selectedCountry ? selectedCountry.value : "",
             // City:'',
-            City: preselectCountry ? cities2[preselectCountry.value][0] : "",
+            City: selectedCountry ? cities2[selectedCountry.value][0] : "",
             Email:'',
             countryCode: '',
             PhoneNumber:''
@@ -158,18 +159,18 @@ function Quality () {
     })
     const country=formik.values.Country
 
-const countryCodeFromCountry = (country) => {
-    var returnValue = '';
-    countryCodes.forEach((element) => {
-      if (element.code === country) {
-        returnValue = element;
-        console.log(element)
-        return;
-      }
-    });
+// const countryCodeFromCountry = (country) => {
+//     var returnValue = '';
+//     countryCodes.forEach((element) => {
+//       if (element.code === country) {
+//         returnValue = element;
+//         console.log(element)
+//         return;
+//       }
+//     });
 
-    return returnValue;    
-  };
+//     return returnValue;    
+//   };
 
     return (
         <div className="quality-body">
@@ -241,8 +242,8 @@ const countryCodeFromCountry = (country) => {
                          onChange={value=>{
                          formik.setFieldValue('Country', value.value)
                          formik.setFieldValue('City' ,cities2[value.value][0])
-                        //  formik.setFieldValue('countryCode', formik.values.countryCode) //forEach
-                        formik.setFieldValue('countryCode',countryCodeFromCountry(value.value))
+                         formik.setFieldValue('countryCode', formik.values.countryCode) //forEach
+                        // formik.setFieldValue('countryCode',countryCodeFromCountry(value.value))
                         //  this is to hide the error message
                          formik.setFieldTouched('Country' ,false )
                         }}
@@ -270,13 +271,13 @@ const countryCodeFromCountry = (country) => {
                         <div className="form_grid-select"><div className="form-row">
                         <div>
                         <CustomSelect3 
-                          style={{
-                            width: "100%",
-                            marginTop: ".25rem",
-                            fontSize: "80%",
-                            color: "#dc3545",
-                            textAlign: "center"
-                          }}
+                        //   style={{
+                        //     width: "100%",
+                        //     marginTop: ".25rem",
+                        //     fontSize: "80%",
+                        //     color: "#dc3545",
+                        //     textAlign: "center"
+                        //   }}
                         className="select"
                         options={countryCodes}
                         value={formik.values.countryCode}
