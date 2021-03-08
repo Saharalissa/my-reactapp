@@ -13,6 +13,7 @@ import CustomSelect from './select';
 import CustomSelect2 from './select2';
 import CustomSelect3 from './select3';
 import LocalizedStrings from "react-localization";
+import Axios from 'axios';
 
 var english =require("./Data");
 var arabic =require("./quality_arabic");
@@ -190,6 +191,25 @@ function Quality () {
 
         return errors;
     }
+
+function caces(){
+console.log(active)
+  if (active !== "otherIssue"){
+   return  { 
+    malocclusionType:"Bite-issue",
+    caseSeverity:"Severe",
+    caseType: "plus "
+   }
+  }
+ else {
+   return {"malocclusionType:": "otherIssue",
+              "caseSeverity:":"Severe",
+              "caseType:": "plus" 
+    }
+ }
+  
+  
+}
 //Form initial values
     const formik = useFormik({
         initialValues:{
@@ -201,11 +221,19 @@ function Quality () {
             City: selectedCountry ? cities2[language][selectedCountry.value][0] : "",
             Email:'',
             countryCode: '',
-            PhoneNumber:''
-        },
+            PhoneNumber:'',
+            caces: caces()
+        },    
         validate,
         onSubmit: values => {
             console.log(JSON.stringify(values, null, 2))
+            Axios.post(` https://jsonplaceholder.typicode.com/users`, { values })
+            .then(res => {
+              console.log(res);
+              console.log(res.data);
+            }).catch(error => {
+              console.log(error);
+          })
         }
     })
     const country=formik.values.Country
@@ -345,7 +373,7 @@ function Quality () {
                        </div>
                         <div className="form_grid">
                             <div className= "form-button">
-                                <button className="submit-form-button-1" type="submit" onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button>
+                                <button className="submit-form-button-1" type="submit" onClick={() => {console.log("malocclusionType:","Bite-issue"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button>
                                 <div className="disclaimer_text">We only treat patients age 16 and up.</div>
                             </div>
                             <div></div>

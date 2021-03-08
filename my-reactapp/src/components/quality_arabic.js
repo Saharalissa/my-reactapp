@@ -12,6 +12,7 @@ import CustomSelect from './select';
 import CustomSelect2 from './select2';
 import CustomSelect3 from './select3';
 import LocalizedStrings from "react-localization";
+import Axios from 'axios';
 
 var english =require("./quality");
 var arabic =require("./Data_Arabic");
@@ -22,6 +23,7 @@ var pathElements = originalPath.split("/");
 const originalLocalePath = pathElements[1];
 let language = originalLocalePath;
 strings.setLanguage(language);
+console.log(language)
 
 const countries = {
     en: [
@@ -202,8 +204,15 @@ const formik = useFormik({
     },
     validate,
     onSubmit: values => {
-        console.log(JSON.stringify(values, null, 2))
-    }
+      console.log(JSON.stringify(values, null, 2))
+      Axios.post(` https://jsonplaceholder.typicode.com/users`, { values })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      }).catch(error => {
+        console.log(error);
+    })
+  }
 })
 const country=formik.values.Country
 
