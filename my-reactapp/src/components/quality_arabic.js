@@ -1,15 +1,159 @@
 import React, {useState} from 'react';
+import queryString from "query-string";
 import Card_arabic from './card_arabic';
 import Data from './Data_Arabic';
 import crowded from '../images/funnel3/crowded.png';
 import crossbite from '../images/funnel3/crossbite.png';
 import spacing from '../images/funnel3/spacing.png';
 import bite_issue from '../images/funnel3/bite_issue.png';
-import {useFormik} from 'formik';
+import {Formik, useFormik} from 'formik';
+import Select,  { components } from 'react-select';
+import CustomSelect from './select';
+import CustomSelect2 from './select2';
+import CustomSelect3 from './select3';
+import LocalizedStrings from "react-localization";
+
+var english =require("./quality");
+var arabic =require("./Data_Arabic");
+var strings = new LocalizedStrings({en: english, ar: arabic});
+
+const originalPath = window.location.pathname;
+var pathElements = originalPath.split("/");
+const originalLocalePath = pathElements[1];
+let language = originalLocalePath;
+strings.setLanguage(language);
+
+const countries = {
+    en: [
+      { value: "jo", label: "Jordan" },
+      { value: "sa", label: "Saudi Arabia" },
+
+      { value: "kw", label: "Kuwait" },
+      { value: "qa", label: "Qatar" },
+      { value: "others", label: "Other Countries" },
+
+    ],
+    ar: [
+      { value: "jo", label: "الاردن" },
+      { value: "sa", label: "السعودية" },
+
+      { value: "kw", label: "الكويت" },
+      { value: "qa", label: "قطر" },
+      { value: "others", label: "دول اخرى" },
+
+
+    ],
+  };
+  const countryCodes = [
+    { value: "+962", label: "+962", code: "jo" },
+    { value: "+966", label: "+966", code: "sa" },
+    { value: "+965", label: "+965", code: "kw" },
+    { value: "+974", label: "+974", code: "qa" },
+    { value: "+971", label: "+971", code: "ae" },
+    { value: "+973", label: "+973", code: "bh" },
+    { value: "+968", label: "+968", code: "om" },
+
+  ];
+    
+  const cities2 = {
+    en: {
+      ae: [
+        { value: "dubai", label: "Dubai" },
+        { value: "abudhabi", label: "Abu Dhabi" },
+        { value: "ajman", label: "Ajman" },
+      ],
+      jo: [{ value: "amman", label: "Amman" }],
+      qa: [{ value: "doha", label: "Doha" }],
+      kw: [{ value: "kuwait", label: "Kuwait" }],
+      sa: [
+        { value: "riyadh", label: "Riyadh" },
+        { value: "jeddah", label: "Jeddah" },
+        { value: "khobar", label: "Khobar" },
+        { value: "dhahran", label: "Dhahran" },
+        { value: "dammam", label: "Dammam" },
+      ]
+
+
+    },
+    ar: {
+      ae: [
+        { value: "dubai", label: "دبي" },
+        { value: "abudhabi", label: "ابو ظبي" },
+        { value: "ajman", label: "عجمان" },
+      ],
+      jo: [{ value: "amman", label: "عمان" }],
+      qa: [{ value: "doha", label: "الدوحة" }],
+      kw: [{ value: "kuwait", label: "الكويت" }],
+      sa: [
+        { value: "riyadh", label: "الرياض" },
+        { value: "jeddah", label: "جدة" },
+        { value: "khobar", label: "الخبر" },
+        { value: "dhahran", label: "الظهران" },
+        { value: "dammam", label: "الدمام" },
+      ]
+    },
+  };
+
+const includes = require("lodash/includes");
+
+// fetchDashboardData(urlCountry.country)
+const standardizedCountryCode = (incoming) => {
+    if (
+      includes(
+        ["uae", "ae", "united arabic emirates", "arab emirtaes"],
+        incoming.toLowerCase()
+      )
+    ) {
+      return "ae";
+    }
+ 
+    if (includes(["sa", "saudi", "saudi arabia"], incoming.toLowerCase())) {
+      return "sa";
+    }
+ 
+    if (includes(["jo", "jordan"], incoming.toLowerCase())) {
+      return "jo";
+    }
+ 
+    if (includes(["lb", "lebanon"], incoming.toLowerCase())) {
+      return "lb";
+    }
+ 
+    if (includes(["iq", "iraq"], incoming.toLowerCase())) {
+      return "iq";
+    }
+ 
+    if (includes(["qa", "qatar"], incoming.toLowerCase())) {
+      return "qa";
+    }
+ 
+    if (includes(["kw", "kuwait"], incoming.toLowerCase())) {
+      return "kw";
+    }
+ 
+    return "n/a";
+  };
+//   !queryParams.country && delete cities2.sa;
 
 // This component is for 1_2 smile funnel
 function Quality_Arabic () {
     const [active, setActive] = useState("");
+    const [select, setSelect] = useState("");
+    //queryparams ex: "?country=jo" key(country) value(jo)
+    let queryParams = queryString.parse(window.location.search);
+    console.log(queryParams.country)
+    //default values with "?country=country" these will fill the initial values this is when we have queryparams
+    let urlCountry = queryParams.country ? queryParams.country : "";
+    let standardCountryCode = standardizedCountryCode(urlCountry);
+
+    var selectedCountry = null;
+
+    countries[language].forEach((element) => {
+      if (element.value === standardCountryCode) {
+        selectedCountry = element;
+        return;
+      }
+    });
     
     //Validation
     const validate = values => {
@@ -44,20 +188,24 @@ function Quality_Arabic () {
         return errors;
     }
 //Form initial values
-    const formik = useFormik({
-        initialValues:{
-            FirstName:'',
-            LastName:'',
-            Country:'',
-            City:'',
-            Email:'',
-            PhoneNumber:''
-        },
-        validate,
-        onSubmit: values => {
-            console.log(JSON.stringify(values, null, 2))
-        }
-    })
+const formik = useFormik({
+    initialValues:{
+        FirstName:'',
+        LastName:'',
+        // Country:'',
+        Country: selectedCountry ? selectedCountry.value : "",
+        // City:'',
+        City: selectedCountry ? cities2[language][selectedCountry.value][0] : "",
+        Email:'',
+        countryCode: '',
+        PhoneNumber:''
+    },
+    validate,
+    onSubmit: values => {
+        console.log(JSON.stringify(values, null, 2))
+    }
+})
+const country=formik.values.Country
 
     return (
         <div className="quality-body-arabic">
@@ -115,31 +263,76 @@ function Quality_Arabic () {
                 <div className="section1_mobile">
                     <p className="secion1_q">3.أدخل تفاصيل الاتصال الخاصة بك.</p>
                 </div>
-                    <form onSubmit={formik.handleSubmit}>
+                <form onSubmit={formik.handleSubmit}>
                         <div className="form_grid">
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.FirstName} name="First Name" placeholder="الاسم الأول" className="form-control" />
+                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.FirstName} name="FirstName" placeholder="First Name" className="form-control" />
                         {formik.touched.FirstName && formik.errors.FirstName? <div className="error">{formik.errors.FirstName}</div>: null}</div></div>
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.LastName} name="Last Name" placeholder="اسم العائلة" className="form-control"/>
+                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.LastName} name="LastName" placeholder="Last Name" className="form-control"/>
                         {formik.touched.LastName && formik.errors.LastName? <div className="error">{formik.errors.LastName}</div>: null}</div></div>
                         </div>
                         <div className="form_grid">
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Country} name="Country" placeholder="الدولة" className="form-control"/>
+                        <div><div className="form-row">
+                        <CustomSelect
+                         className="selectCountry"
+                         options={countries[language]}
+                         value={formik.values.Country}
+                         onChange={value=>{
+                         formik.setFieldValue('Country', value.value)
+                         formik.setFieldValue('City' ,cities2[language][value.value][0])
+                         formik.setFieldValue('countryCode', formik.values.countryCode) //forEach
+                        // formik.setFieldValue('countryCode',countryCodeFromCountry(value.value))
+                        //  this is to hide the error message
+                         formik.setFieldTouched('Country' ,false )
+                        }}
+                        
+                         />
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Country} name="Country" placeholder="Country" className="form-control"/> */}
                         {formik.touched.Country && formik.errors.Country? <div className="error">{formik.errors.Country}</div>: null}</div></div>
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="المدينة"className="form-control"/>
-                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
-                        </div>
+                        <div><div className="form-row">
+                        <CustomSelect2 
+                        // options={`cities.${formik.values.Country}`}
+                        options={cities2[language][formik.values.Country]}
+                        country={formik.values.Country}
+                        value={formik.values.City}
+                        onChange={value=>formik.setFieldValue('City', formik.values.City)}
+                         />
+                            {console.log(formik.values.City)}
+                         
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
+                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div> </div>
                         <div className="form_grid">
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Email} name="Email" placeholder="البريد الاكتروني" className="form-control"/>
+                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Email} name="Email" placeholder="Email" className="form-control"/>
                         {formik.touched.Email && formik.errors.Email? <div className="error">{formik.errors.Email}</div>: null}</div></div>
                         {/* this is for the extention number */}
                         {/* <div className="form-row"><div className="input-container"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.extention} name="extention" placeholder="+962" className="form-control-inside"/><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control-outside"/></div> */}
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="1111 111" className="form-control"/>
+                        <div className="form_grid-select"><div className="form-row">
+                        <div>
+                        <CustomSelect3 
+                        //   style={{
+                        //     width: "100%",
+                        //     marginTop: ".25rem",
+                        //     fontSize: "80%",
+                        //     color: "#dc3545",
+                        //     textAlign: "center"
+                        //   }}
+                        className="select"
+                        options={countryCodes}
+                        value={formik.values.countryCode}
+                        country={formik.values.Country}
+                        onChange={value=>formik.setFieldValue('countryCode',formik.values.countryCode)}
+                         />
+                            {console.log(formik.values.countryCode.value)}
+                         
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
+                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
+                        
+                        <div className="col-select"><input style={{width:'100%'}} onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control"/>
                         {formik.touched.PhoneNumber && formik.errors.PhoneNumber? <div className="error">{formik.errors.PhoneNumber}</div>: null}</div></div>
-                        </div>
+                       </div>
                         <div className="form_grid">
                             <div className= "form-button">
-                                <button  type="submit" className="submit-form-button-1" onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>إحصل على نتائج التقييم</button>
-                                <div className="disclaimer_text">نعالج فقط من أعمارهم 16 سنة أو أكثر</div>
+                                <button className="submit-form-button-1" type="submit" onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button>
+                                <div className="disclaimer_text">We only treat patients age 16 and up.</div>
                             </div>
                             <div></div>
                         </div>

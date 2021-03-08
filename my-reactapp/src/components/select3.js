@@ -1,11 +1,15 @@
 import Select from 'react-select';
 
 const countryCodes = [
-    { value: "+962", label: "+962", code: "jo" },
-    { value: "+966", label: "+966", code: "sa" },
-    { value: "+965", label: "+965", code: "kw" },
-    { value: "+974", label: "+974", code: "qa" },
-  ];
+  { value: "+962", label: "+962", code: "jo" },
+  { value: "+966", label: "+966", code: "sa" },
+  { value: "+965", label: "+965", code: "kw" },
+  { value: "+974", label: "+974", code: "qa" },
+  { value: "+971", label: "+971", code: "ae" },
+  { value: "+973", label: "+973", code: "bh" },
+  { value: "+968", label: "+968", code: "om" },
+
+];
 
 
 function CustomSelect3({onChange, options, value, country, className}) {
@@ -15,8 +19,7 @@ function CustomSelect3({onChange, options, value, country, className}) {
              if(country === "sa") {
                   value=countryCodes[1].value
                   console.log(value)
-                }
-                else if (country === "kw") {
+                }else if (country === "kw") {
                     value=countryCodes[2].value
                     console.log(value)
                 }else if (country === "qa") {
@@ -26,6 +29,16 @@ function CustomSelect3({onChange, options, value, country, className}) {
                     value=countryCodes[0].value
                     console.log(value)
                 }
+                else if (country === "ae") {
+                  value=countryCodes[4].value
+                  console.log(value)
+              }else if (country === "bh") {
+                value=countryCodes[5].value
+                console.log(value)
+            }else if (country === "om") {
+              value=countryCodes[6].value
+              console.log(value)
+          }
                 {console.log(value)}
                 return options? options.find(option=>option.value === value): ""
 }

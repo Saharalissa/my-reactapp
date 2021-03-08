@@ -3,8 +3,10 @@ import LocalizedStrings from 'react-localization';
 
 import Quality from '../quality';
 import Quality_Arabic from '../quality_arabic';
-var english =require("../Data");
-var arabic =require("../Data_Arabic");
+// var english =require("../Data");
+// var arabic =require("../Data_Arabic");
+var english =require("../quality");
+var arabic =require("../quality_arabic");
 var string = new LocalizedStrings({en: english, ar: arabic});
 
 //functional component
@@ -13,22 +15,22 @@ function Languages_smile (props) {
 console.log(props)
 
 var local = props.match.params.language;
-let language = local ? local : "quality";
-var direction = language === "quality_arabic" ? "rtl" : "ltr";
+let language = local ? local : "en";
+var direction = language === "ar" ? "rtl" : "ltr";
 string.setLanguage(language);
 
         return(            
              <div>
              {
-               (language === "quality_arabic")?(
-               <button><a  href="/quality">English</a></button>
+               (language === "ar")?(
+               <button><a  href="/en">English</a></button>
                ) : (
-               <button><a  href="/quality_arabic">Arabic</a></button>
+               <button><a  href="/ar">Arabic</a></button>
                )
             }
 
            <div>{
-               (language === "quality")?(
+               (language === "en")?(
                <Quality/>
                ) : (
                <Quality_Arabic/>
