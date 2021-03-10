@@ -135,7 +135,7 @@ const standardizedCountryCode = (incoming) => {
  
     return "n/a";
   };
-//   !queryParams.country && delete cities2.sa;
+
 
     
 
@@ -193,23 +193,26 @@ function Quality () {
     }
 
 function caces(){
-console.log(active)
-  if (active !== "otherIssue"){
+  var val =active
+  console.log(val)
+  if (val === "OtherIssue"){
    return  { 
-    malocclusionType:"Bite-issue",
+    malocclusionType:"OtherIssue",
     caseSeverity:"Severe",
     caseType: "plus "
    }
   }
- else {
-   return {"malocclusionType:": "otherIssue",
-              "caseSeverity:":"Severe",
-              "caseType:": "plus" 
+ else if(val === "Bite-Issue"){
+   return {
+     malocclusionType: "Bite-issue",
+     caseSeverity:"Severe",
+     caseType: "plus" 
     }
  }
-  
-  
+
 }
+
+console.log(caces())
 //Form initial values
     const formik = useFormik({
         initialValues:{
@@ -222,12 +225,28 @@ console.log(active)
             Email:'',
             countryCode: '',
             PhoneNumber:'',
-            caces: caces()
+            caces: caces(),
+            preferedLanguage: language
         },    
         validate,
         onSubmit: values => {
             console.log(JSON.stringify(values, null, 2))
-            Axios.post(` https://jsonplaceholder.typicode.com/users`, { values })
+            let body = {
+              email:formik.values.Email,
+              firstName:formik.values.FirstName,
+              lastName:formik.values.LastName,
+              preferredLanguage:language,
+              Country:formik.values.Country,
+              City:formik.values.City.value,
+              phoneNumber:formik.values.PhoneNumber,
+              caseType :"plus",
+              malocclusionType:active,
+              caseSeverity:"severe"	
+                       }
+
+            // console.log(body.email, body.firstName, body.lastName, body.preferredLanguage, body.Country, body.City, body.phoneNumber, body.caseType, body.malocclusionType, body.caseSeverity)
+            // Axios.post(`https://assessment.12staging.com/capture/funnel3/userinfo`, {value})
+            Axios.post(` https://assessment.12staging.com/capture/funnel3/userinfo`, body)
             .then(res => {
               console.log(res);
               console.log(res.data);
@@ -350,13 +369,6 @@ console.log(active)
                         <div className="form_grid-select"><div className="form-row">
                         <div>
                         <CustomSelect3 
-                        //   style={{
-                        //     width: "100%",
-                        //     marginTop: ".25rem",
-                        //     fontSize: "80%",
-                        //     color: "#dc3545",
-                        //     textAlign: "center"
-                        //   }}
                         className="select"
                         options={countryCodes}
                         value={formik.values.countryCode}
@@ -381,6 +393,8 @@ console.log(active)
                     </form>
                     </div>}
 
+                    
+
                 {active === "OtherIssue" &&  <div>
                     {/* section3 web */}
                 <div className="section3">
@@ -400,19 +414,59 @@ console.log(active)
                         {formik.touched.LastName && formik.errors.LastName? <div className="error">{formik.errors.LastName}</div>: null}</div></div>
                         </div>
                         <div className="form_grid">
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Country} name="Country" placeholder="Country" className="form-control"/>
+                        <div><div className="form-row">
+                        <CustomSelect
+                         className="selectCountry"
+                         options={countries[language]}
+                         value={formik.values.Country}
+                         onChange={value=>{
+                         formik.setFieldValue('Country', value.value)
+                         formik.setFieldValue('City' ,cities2[language][value.value][0])
+                         formik.setFieldValue('countryCode', formik.values.countryCode) //forEach
+                        // formik.setFieldValue('countryCode',countryCodeFromCountry(value.value))
+                        //  this is to hide the error message
+                         formik.setFieldTouched('Country' ,false )
+                        }}
+                        
+                         />
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Country} name="Country" placeholder="Country" className="form-control"/> */}
                         {formik.touched.Country && formik.errors.Country? <div className="error">{formik.errors.Country}</div>: null}</div></div>
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/>
-                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
-                        </div>
+                        <div><div className="form-row">
+                        <CustomSelect2 
+                        // options={`cities.${formik.values.Country}`}
+                        options={cities2[language][formik.values.Country]}
+                        country={formik.values.Country}
+                        value={formik.values.City}
+                        onChange={value=>formik.setFieldValue('City', formik.values.City)}
+                         />
+                            {console.log(formik.values.City)}
+                         
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
+                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div> </div>
+                        
                         <div className="form_grid">
                         <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Email} name="Email" placeholder="Email" className="form-control"/>
                         {formik.touched.Email && formik.errors.Email? <div className="error">{formik.errors.Email}</div>: null}</div></div>
                         {/* this is for the extention number */}
                         {/* <div className="form-row"><div className="input-container"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.extention} name="extention" placeholder="+962" className="form-control-inside"/><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control-outside"/></div> */}
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control"/>
+                        <div className="form_grid-select"><div className="form-row">
+                        <div>
+                        <CustomSelect3 
+                        className="select"
+                        options={countryCodes}
+                        value={formik.values.countryCode}
+                        country={formik.values.Country}
+                        onChange={value=>formik.setFieldValue('countryCode',formik.values.countryCode)}
+                         />
+                            {console.log(formik.values.countryCode.value)}
+                         
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
+                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
+                        
+                        <div className="col-select"><input style={{width:'100%'}} onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control"/>
                         {formik.touched.PhoneNumber && formik.errors.PhoneNumber? <div className="error">{formik.errors.PhoneNumber}</div>: null}</div></div>
-                        </div>
+                       </div>
+                        
                         <div className="form_grid">
                             <div className= "form-button">
                                 <button className="submit-form-button-1" type="submit" onClick={() => {console.log("malocclusionType:","OtherIssue"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button>

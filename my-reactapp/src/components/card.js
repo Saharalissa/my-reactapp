@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
+import queryString from "query-string";
 import Form from './form';
-import {useFormik} from 'formik';
+import {Formik, useFormik} from 'formik';
+import Select,  { components } from 'react-select';
+import LocalizedStrings from "react-localization";
+import Axios from 'axios';
+
 // This component is for 1_2 smile funnel
 function Card_arabic ({props, data, cardIndex}) {
     const [status, setStatus] = useState(false);

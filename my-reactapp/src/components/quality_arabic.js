@@ -189,6 +189,24 @@ function Quality_Arabic () {
 
         return errors;
     }
+
+    function caces(){
+      var val =active
+      if (active === "otherIssue"){
+       active=  { 
+        malocclusionType:"otherIssue",
+        caseSeverity:"Severe",
+        caseType: "plus "
+       }
+      }
+     else {
+       return {
+         malocclusionType: "Bite-issue",
+         caseSeverity:"Severe",
+         caseType: "plus" 
+        }
+     }
+    }
 //Form initial values
 const formik = useFormik({
     initialValues:{
@@ -200,7 +218,9 @@ const formik = useFormik({
         City: selectedCountry ? cities2[language][selectedCountry.value][0] : "",
         Email:'',
         countryCode: '',
-        PhoneNumber:''
+        PhoneNumber:'',
+        caces: caces(),
+        preferedLanguage: language
     },
     validate,
     onSubmit: values => {
