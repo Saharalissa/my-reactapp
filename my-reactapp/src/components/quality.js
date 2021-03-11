@@ -7,7 +7,7 @@ import crowded from '../images/funnel3/crowded.png';
 import crossbite from '../images/funnel3/crossbite.png';
 import spacing from '../images/funnel3/spacing.png';
 import bite_issue from '../images/funnel3/bite_issue.png';
-import {Formik, useFormik} from 'formik';
+import {Field, Formik, useFormik} from 'formik';
 import Select,  { components } from 'react-select';
 import CustomSelect from './select';
 import CustomSelect2 from './select2';
@@ -20,7 +20,7 @@ var arabic =require("./quality_arabic");
 var strings = new LocalizedStrings({en: english, ar: arabic});
 
 const originalPath = window.location.pathname;
-var pathElements = originalPath.split("/");
+var pathElements = originalPath.split("/"); //[0]=> / [1]=> en or ar
 const originalLocalePath = pathElements[1];
 let language = originalLocalePath;
 strings.setLanguage(language);
@@ -137,8 +137,6 @@ const standardizedCountryCode = (incoming) => {
   };
 
 
-    
-
 // This component is for 1_2 smile funnel
 function Quality () {
     const [active, setActive] = useState("");
@@ -250,6 +248,28 @@ console.log(caces())
             .then(res => {
               console.log(res);
               console.log(res.data);
+              //the following checks if the string params has data or not
+              //if it does not have data on an email
+              // it will take from the input Fieldotherwise will take the noe in the string params
+
+              // let postedEmail = queryString.parse(window.location.search);
+              // if(postedEmail.email){
+              //   postedEmail = queryString.parse(window.location.search).email;
+              //   console.log(postedEmail)
+              //   console.log(queryString.parse(window.location.search))
+              //   // window.location=`/${language}/appointment`
+              // }else{
+              //   postedEmail = body.email
+              //   console.log(postedEmail)
+              //   // window.location=`/${language}/confirmation`
+              // }
+
+                //the following will add the query string data to the route adding to it email from input field
+
+              let postedEmail=
+               window.location.search ? `${window.location.search}&email=${body.email}`: `?email=${body.email}`;
+               window.location=`/${language}/confirmation${postedEmail}`
+              console.log(postedEmail)
             }).catch(error => {
               console.log(error);
           })
