@@ -23,7 +23,14 @@ function Confirmation() {
     console.log(res.data);
     setExists(res.data.exists);
     if(res.data.exists === true) {
-        window.location=`/${language}/appointment${email}`//needs fixing
+        window.location=`/${language}/appointment?email=${email}`//needs fixing
+    } else {
+        if (language = 'en'){
+           window.location=`/en` 
+        }else {
+           window.location=`/quality_arabic` 
+        }
+        
     }
     console.log(res.data.exists);
     console.log(email);
