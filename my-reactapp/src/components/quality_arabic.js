@@ -192,49 +192,72 @@ function Quality_Arabic () {
 
     function caces(){
       var val =active
-      if (active === "otherIssue"){
-       active=  { 
-        malocclusionType:"otherIssue",
+      console.log(val)
+      if (val === "OtherIssue"){
+       return  { 
+        malocclusionType:"OtherIssue",
         caseSeverity:"Severe",
         caseType: "plus "
        }
       }
-     else {
+     else if(val === "Bite-Issue"){
        return {
          malocclusionType: "Bite-issue",
          caseSeverity:"Severe",
          caseType: "plus" 
         }
      }
+    
     }
-//Form initial values
-const formik = useFormik({
-    initialValues:{
-        FirstName:'',
-        LastName:'',
-        // Country:'',
-        Country: selectedCountry ? selectedCountry.value : "",
-        // City:'',
-        City: selectedCountry ? cities2[language][selectedCountry.value][0] : "",
-        Email:'',
-        countryCode: '',
-        PhoneNumber:'',
-        caces: caces(),
-        preferedLanguage: language
-    },
-    validate,
-    onSubmit: values => {
-      console.log(JSON.stringify(values, null, 2))
-      Axios.post(` https://jsonplaceholder.typicode.com/users`, { values })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      }).catch(error => {
-        console.log(error);
-    })
-  }
-})
-const country=formik.values.Country
+    
+    console.log(caces())
+    //Form initial values
+        const formik = useFormik({
+            initialValues:{
+                FirstName:'',
+                LastName:'',
+                // Country:'',
+                Country: selectedCountry ? selectedCountry.value : "",
+                // City:'',
+                City: selectedCountry ? cities2[language][selectedCountry.value][0] : "",
+                Email:'',
+                countryCode: '',
+                PhoneNumber:'',
+                caces: caces(),
+                preferedLanguage: language
+            },    
+            validate,
+            onSubmit: values => {
+                console.log(JSON.stringify(values, null, 2))
+                let body = {
+                  email:formik.values.Email,
+                  firstName:formik.values.FirstName,
+                  lastName:formik.values.LastName,
+                  preferredLanguage:language,
+                  Country:formik.values.Country,
+                  City:formik.values.City.value,
+                  phoneNumber:formik.values.PhoneNumber,
+                  caseType :"plus",
+                  malocclusionType:active,
+                  caseSeverity:"severe"	
+                           }
+    
+                // console.log(body.email, body.firstName, body.lastName, body.preferredLanguage, body.Country, body.City, body.phoneNumber, body.caseType, body.malocclusionType, body.caseSeverity)
+                // Axios.post(`https://assessment.12staging.com/capture/funnel3/userinfo`, {value})
+                Axios.post(` https://assessment.12staging.com/capture/funnel3/userinfo`, body)
+                .then(res => {
+                  console.log(res);
+                  console.log(res.data);    
+                  let postedEmail=
+                   window.location.search ? `${window.location.search}&email=${body.email}`: `?email=${body.email}`;
+                   window.location=`/${language}/confirmation${postedEmail}`
+                  console.log(postedEmail)
+                }).catch(error => {
+                  console.log(error);
+              })
+            }
+        })
+        const country=formik.values.Country
 
     return (
         <div className="quality-body-arabic">
@@ -294,9 +317,9 @@ const country=formik.values.Country
                 </div>
                 <form onSubmit={formik.handleSubmit}>
                         <div className="form_grid">
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.FirstName} name="FirstName" placeholder="First Name" className="form-control" />
+                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.FirstName} name="FirstName" placeholder="الاسم الأول" className="form-control" />
                         {formik.touched.FirstName && formik.errors.FirstName? <div className="error">{formik.errors.FirstName}</div>: null}</div></div>
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.LastName} name="LastName" placeholder="Last Name" className="form-control"/>
+                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.LastName} name="LastName" placeholder="اسم العائلة" className="form-control"/>
                         {formik.touched.LastName && formik.errors.LastName? <div className="error">{formik.errors.LastName}</div>: null}</div></div>
                         </div>
                         <div className="form_grid">
@@ -330,7 +353,7 @@ const country=formik.values.Country
                         {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
                         {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div> </div>
                         <div className="form_grid">
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Email} name="Email" placeholder="Email" className="form-control"/>
+                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Email} name="Email" placeholder="البريد الالكتروني" className="form-control"/>
                         {formik.touched.Email && formik.errors.Email? <div className="error">{formik.errors.Email}</div>: null}</div></div>
                         {/* this is for the extention number */}
                         {/* <div className="form-row"><div className="input-container"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.extention} name="extention" placeholder="+962" className="form-control-inside"/><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control-outside"/></div> */}
@@ -355,13 +378,13 @@ const country=formik.values.Country
                         {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
                         {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
                         
-                        <div className="col-select"><input style={{width:'100%'}} onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control"/>
+                        <div className="col-select"><input style={{width:'100%'}} onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="11 11111" className="form-control"/>
                         {formik.touched.PhoneNumber && formik.errors.PhoneNumber? <div className="error">{formik.errors.PhoneNumber}</div>: null}</div></div>
                        </div>
                         <div className="form_grid">
                             <div className= "form-button">
-                                <button className="submit-form-button-1" type="submit" onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>Get results</button>
-                                <div className="disclaimer_text">We only treat patients age 16 and up.</div>
+                                <button className="submit-form-button-1" type="submit" onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>احصل على نتائج التقييم</button>
+                                <div className="disclaimer_text">نعالج فقط من أعمارهم 16 سنة أو أكثر</div>
                             </div>
                             <div></div>
                         </div>
@@ -379,30 +402,68 @@ const country=formik.values.Country
                     <p className="secion1_q">3.أدخل تفاصيل الاتصال الخاصة بك.</p>
                 </div>
                 <div className = "textAreaGrid"><div className="circle">2</div><textarea className= "textArea" type="text" rows="6" placeholder="اشرح لنا الحالة في عدة كلمات"></textarea></div>
-                    <form onSubmit={formik.handleSubmit}>
+                <form onSubmit={formik.handleSubmit}>
                         <div className="form_grid">
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.FirstName} name="First Name" placeholder="الاسم الأول" className="form-control" />
+                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.FirstName} name="FirstName" placeholder="الاسم الأول" className="form-control" />
                         {formik.touched.FirstName && formik.errors.FirstName? <div className="error">{formik.errors.FirstName}</div>: null}</div></div>
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.LastName} name="Last Name" placeholder="اسم العائلة" className="form-control"/>
+                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.LastName} name="LastName" placeholder="اسم العائلة" className="form-control"/>
                         {formik.touched.LastName && formik.errors.LastName? <div className="error">{formik.errors.LastName}</div>: null}</div></div>
                         </div>
                         <div className="form_grid">
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Country} name="Country" placeholder="الدولة" className="form-control"/>
+                        <div><div className="form-row">
+                        <CustomSelect
+                         className="selectCountry"
+                         options={countries[language]}
+                         value={formik.values.Country}
+                         onChange={value=>{
+                         formik.setFieldValue('Country', value.value)
+                         formik.setFieldValue('City' ,cities2[language][value.value][0])
+                         formik.setFieldValue('countryCode', formik.values.countryCode) //forEach
+                        // formik.setFieldValue('countryCode',countryCodeFromCountry(value.value))
+                        //  this is to hide the error message
+                         formik.setFieldTouched('Country' ,false )
+                        }}
+                        
+                         />
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Country} name="Country" placeholder="Country" className="form-control"/> */}
                         {formik.touched.Country && formik.errors.Country? <div className="error">{formik.errors.Country}</div>: null}</div></div>
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="المدينة"className="form-control"/>
-                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
-                        </div>
+                        <div><div className="form-row">
+                        <CustomSelect2 
+                        // options={`cities.${formik.values.Country}`}
+                        options={cities2[language][formik.values.Country]}
+                        country={formik.values.Country}
+                        value={formik.values.City}
+                        onChange={value=>formik.setFieldValue('City', formik.values.City)}
+                         />
+                            {console.log(formik.values.City)}
+                         
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
+                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div> </div>
                         <div className="form_grid">
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Email} name="Email" placeholder="البريد الاكتروني" className="form-control"/>
+                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Email} name="Email" placeholder="البريد الالكتروني" className="form-control"/>
                         {formik.touched.Email && formik.errors.Email? <div className="error">{formik.errors.Email}</div>: null}</div></div>
                         {/* this is for the extention number */}
                         {/* <div className="form-row"><div className="input-container"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.extention} name="extention" placeholder="+962" className="form-control-inside"/><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="Phone Number" className="form-control-outside"/></div> */}
-                        <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="1111 111" className="form-control"/>
+                        <div className="form_grid-select"><div className="form-row">
+                        <div>
+                        <CustomSelect3 
+                        className="select"
+                        options={countryCodes}
+                        value={formik.values.countryCode}
+                        country={formik.values.Country}
+                        onChange={value=>formik.setFieldValue('countryCode',formik.values.countryCode)}
+                         />
+                            {console.log(formik.values.countryCode.value)}
+                         
+                        {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
+                        {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
+                        
+                        <div className="col-select"><input style={{width:'100%'}} onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.PhoneNumber} name="PhoneNumber" placeholder="11 11111" className="form-control"/>
                         {formik.touched.PhoneNumber && formik.errors.PhoneNumber? <div className="error">{formik.errors.PhoneNumber}</div>: null}</div></div>
-                        </div>
+                       </div>
                         <div className="form_grid">
                             <div className= "form-button">
-                                <button  type="submit" className="submit-form-button-1" onClick={() => {console.log("malocclusionType:","OtherIssue"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>إحصل على نتائج التقييم</button>
+                                <button className="submit-form-button-1" type="submit" onClick={() => {console.log("malocclusionType:","Cross-Bite"); console.log("caseSeverity:","Severe"); console.log("caseType:", "plus" ); }}>احصل على نتائج التقييم</button>
                                 <div className="disclaimer_text">نعالج فقط من أعمارهم 16 سنة أو أكثر</div>
                             </div>
                             <div></div>

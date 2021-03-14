@@ -3,15 +3,21 @@ import Select from 'react-select';
 
 import LocalizedStrings from "react-localization";
 
-var english =require("./quality");
-var arabic =require("./Data_Arabic");
-var strings = new LocalizedStrings({en: english, ar: arabic});
+// var english =require("./quality");
+// var arabic =require("./Data_Arabic");
+// var strings = new LocalizedStrings({en: english, ar: arabic});
+
+var english =require("./translations/en.json");
+var arabic =require("./translations/ar.json");
+var string = new LocalizedStrings({en: english, ar: arabic});
 
 const originalPath = window.location.pathname;
-var pathElements = originalPath.split("/");
+var pathElements = originalPath.split("/"); //[0]=> / [1]=> en or ar
 const originalLocalePath = pathElements[1];
 let language = originalLocalePath;
-strings.setLanguage(language);
+
+var direction = language === "ar" ? "rtl" : "ltr";
+string.setLanguage(language);
 
 
 const cities2 = {
@@ -53,36 +59,6 @@ const cities2 = {
     },
   };
 
-// const cities2 = {
-  
-//     ae: [
-//       { value: "dubai", label: "Dubai" },
-//       { value: "abudhabi", label: "Abu Dhabi" },
-//     ],
-//     jo: [{ value: "amman", label: "Amman" }],
-//     qa: [{ value: "doha", label: "Doha" }],
-//     kw: [{ value: "kuwait", label: "Kuwait" }],
-//     sa: [
-//       { value: "riyadh", label: "Riyadh" },
-//       { value: "jeddah", label: "Jeddah" },
-//       { value: "khobar", label: "Khobar" },
-//       { value: "dhahran", label: "Dhahran" },
-//       { value: "dammam", label: "Dammam" },
-//     ]
-  
-// }
-
-
-// const jo = [{ value: "amman", label: "Amman" }]
-// const qa = [{ value: "doha", label: "Doha" }]
-// const kw = [{ value: "kuwait", label: "Kuwait" }]
-// const sa = [
-//     { value: "riyadh", label: "Riyadh" },
-//     { value: "jeddah", label: "Jeddah" },
-//     { value: "khobar", label: "Khobar" },
-//     { value: "dhahran", label: "Dhahran" },
-//     { value: "dammam", label: "Dammam" },
-//   ]
 
 function CustomSelect2({onChange, options, value, country}) {
     
@@ -110,7 +86,7 @@ function CustomSelect2({onChange, options, value, country}) {
     return (
         <div>
             <Select 
-             placeholder="City"
+             placeholder={string.citySelectHolder}
              value={defaultValue(options, value)} 
             // value={cities2.country}
              onChange={value=>onChange(value)} 

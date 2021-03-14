@@ -277,19 +277,6 @@ console.log(caces())
     })
     const country=formik.values.Country
 
-// const countryCodeFromCountry = (country) => {
-//     var returnValue = '';
-//     countryCodes.forEach((element) => {
-//       if (element.code === country) {
-//         returnValue = element;
-//         console.log(element)
-//         return;
-//       }
-//     });
-
-//     return returnValue;    
-//   };
-
     return (
         <div className="quality-body">
             <div></div>
@@ -355,6 +342,7 @@ console.log(caces())
                         <div><div className="form-row">
                         <CustomSelect
                          className="selectCountry"
+                         language = {language}
                          options={countries[language]}
                          value={formik.values.Country}
                          onChange={value=>{

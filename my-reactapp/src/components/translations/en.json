@@ -1,3 +1,8 @@
 {
-   "header": "THE NEW CLEAR AND INVISIBLE ALTERNATIVE TO METAL BRACES"
+   "header": "THE NEW CLEAR AND INVISIBLE ALTERNATIVE TO METAL BRACES",
+   "email": "Enter your email to request an appointment",
+   "button": "Confirm",
+   "holder": "Email",
+   "countrySelectHolder": "Country",
+   "citySelectHolder": "City"
 }

@@ -2,18 +2,27 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import queryString from "query-string";
 import LocalizedStrings from "react-localization";
-import Appointment from './appointment'
+import Appointment from './appointment';
+
+var english =require("./translations/en.json");
+var arabic =require("./translations/ar.json");
+var string = new LocalizedStrings({en: english, ar: arabic});
 
 const originalPath = window.location.pathname;
 var pathElements = originalPath.split("/"); //[0]=> / [1]=> en or ar
 const originalLocalePath = pathElements[1];
 let language = originalLocalePath;
 
+var direction = language === "ar" ? "rtl" : "ltr";
+string.setLanguage(language);
+
 
 function Confirmation() { 
     const [exists,setExists] =useState(false)
     const [email,setEmail] =useState("")
 
+    //There are two axios functions for the same link, one for the click and one of the page when is
+    //loaded to check the queryparams
     function handleClick(e) {
     e.preventDefault();
     console.log('The button was clicked.');
@@ -23,14 +32,9 @@ function Confirmation() {
     console.log(res.data);
     setExists(res.data.exists);
     if(res.data.exists === true) {
-        window.location=`/${language}/appointment?email=${email}`//needs fixing
+        window.location=`/${language}/appointment?email=${email}`//fixed
     } else {
-        if (language = 'en'){
-           window.location=`/en` 
-        }else {
-           window.location=`/quality_arabic` 
-        }
-        
+        window.location=`/${language}`         
     }
     console.log(res.data.exists);
     console.log(email);
@@ -57,10 +61,10 @@ function Confirmation() {
     return(
         <div>
             {exists? <Appointment/> :  
-            <div>
-            <p>Enter your email to request an appointment</p>
-            <input name="Email" placeholder="Email" className="form-control" onChange={e=>{setEmail(e.target.value)}}/>
-            <button className="submit-form-button-1" type="submit" onClick={handleClick}>Confirm</button>
+            <div style={{direction: direction}}>
+            <p>{string.email}</p>
+            <input name="Email" placeholder={string.holder} className="form-control" onChange={e=>{setEmail(e.target.value)}}/>
+            <button className="submit-form-button-1" type="submit" onClick={handleClick}>{string.button}</button>
         </div>}
         </div>
     )

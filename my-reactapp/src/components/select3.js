@@ -96,7 +96,7 @@ const countryCodeOptionLabel = (option) => {
     return (
         <div className={className}>
             <Select 
-             placeholder=" Code"
+             placeholder="+1"
              //if we do not set any value, then we can change the code as we like
              //but no value would be set as default
              value={defaultValue(countryCodes, value)} 
