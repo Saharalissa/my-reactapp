@@ -84,7 +84,7 @@ function handleSubmit(e) {
                   {/* <option >{string[country]?.city[city].localizedClincsArray}</option>    */}
                   {/* {countries[language].map((item, index) => ( */} 
                   {string[country]?.city[city].localizedClincsArray.map((item, index) => (
-                  <option key = {item.index} value={item.value}>{item}</option>       
+                  <option key = {index} value={item.value}>{item}</option>       
                ))}
                  
             </select><br/>
