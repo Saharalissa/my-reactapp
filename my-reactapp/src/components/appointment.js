@@ -49,29 +49,40 @@ const city = props.city
 const clinics = string[country]?.city[city].localizedClincsArray
 const [clinic, setClinic] = useState("")
 const working_hours_clinic = clinic
-
-// const [clinicName, setClinicName] = useState(string[country]?.city[city].clincNameOption[0]);
+const [time, setTime] = useState("");
 const clinicName = string[country]?.city[city].clincNameOption[0];
 const [selectedDate, setSelectedDate] = useState(null)
 const [image, setImage] = useState(null)
+const not_working_time = string[country]?.city[city][clinicName].notAvailableDay
+const x = [0,1,2,3,4,5,6]
+const working_time = x.splice(not_working_time,1)
+// const y = [0, 1, 2, 3, 4, 5, 6].includes(selectedDate);
 
 // console.log(props.country)
 // console.log(props.city)
 // console.log(country)
 // console.log(city)
+console.log(selectedDate)
 console.log(working_hours_clinic)
 console.log(clinicName)
-
+console.log(working_time)
+console.log(x)
+console.log(not_working_time)
 function handleChange(e) {
   // setClinics(string[country]?.city[city].localizedClincsArray)
   setClinic(e.target.value);
+  console.log(e.target.value)
+}
+
+function handleChange2(e) {
+  setTime(e.target.value);
   console.log(e.target.value)
 }
   console.log(clinic)
   console.log(clinics)
 function handleSubmit(e) {
   e.preventDefault();
-  console.log(clinic, selectedDate);
+  console.log(clinic, selectedDate, time);
 }
 
     return(
@@ -90,7 +101,7 @@ function handleSubmit(e) {
                   {/* <option >{string[country]?.city[city].localizedClincsArray}</option>    */}
                   {/* {countries[language].map((item, index) => ( */} 
                   {string[country]?.city[city].localizedClincsArray.map((item, index) => (
-                  <option key = {index} value={item.value}>{item}</option>       
+                  <option key = {index} value={item.value}>{item} {string[country]?.city[city][clinicName].address}</option>       
                ))}
                 </select><br/>
                 <label>
@@ -99,9 +110,9 @@ function handleSubmit(e) {
                    dateFormat = 'E-dd/MM/yy'
                    minDate = {new Date()}
                   // filterDate = {date => date.getDay() != 6 && date.getDay() != 0}
-                  filterDate = {date => date.getDay() != 5}
+                  filterDate = {date => date.getDay() != not_working_time[0]}
                   /><br/>
-                  <select value={clinic} placeholder="" onChange={handleChange}>
+                  <select value={time} placeholder="" onChange={handleChange2}>
                   <option>{}</option>
                   {/* <option >{string[country]?.city[city].localizedClincsArray}</option>    */}
                   {/* {countries[language].map((item, index) => ( */} 
