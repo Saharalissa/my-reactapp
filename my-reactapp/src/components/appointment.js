@@ -48,13 +48,19 @@ const city = props.city
 // const [clinics, setClinics] = useState(string[country]?.city[city].localizedClincsArray)
 const clinics = string[country]?.city[city].localizedClincsArray
 const [clinic, setClinic] = useState("")
+const working_hours_clinic = clinic
+
+// const [clinicName, setClinicName] = useState(string[country]?.city[city].clincNameOption[0]);
+const clinicName = string[country]?.city[city].clincNameOption[0];
 const [selectedDate, setSelectedDate] = useState(null)
 const [image, setImage] = useState(null)
 
-console.log(props.country)
-console.log(props.city)
-console.log(country)
-console.log(city)
+// console.log(props.country)
+// console.log(props.city)
+// console.log(country)
+// console.log(city)
+console.log(working_hours_clinic)
+console.log(clinicName)
 
 function handleChange(e) {
   // setClinics(string[country]?.city[city].localizedClincsArray)
@@ -86,8 +92,7 @@ function handleSubmit(e) {
                   {string[country]?.city[city].localizedClincsArray.map((item, index) => (
                   <option key = {index} value={item.value}>{item}</option>       
                ))}
-                 
-            </select><br/>
+                </select><br/>
                 <label>
                   {string.choose_the_times_that_suits_you}<br/>
                   <DatePicker selected={selectedDate} onChange={date => setSelectedDate(date)}
@@ -95,7 +100,15 @@ function handleSubmit(e) {
                    minDate = {new Date()}
                   // filterDate = {date => date.getDay() != 6 && date.getDay() != 0}
                   filterDate = {date => date.getDay() != 5}
-                  />
+                  /><br/>
+                  <select value={clinic} placeholder="" onChange={handleChange}>
+                  <option>{}</option>
+                  {/* <option >{string[country]?.city[city].localizedClincsArray}</option>    */}
+                  {/* {countries[language].map((item, index) => ( */} 
+                  {string[country]?.city[city][clinicName].working_hours[3].map((item, index) => (
+                  <option key = {index} value={item.value}>{item}</option>       
+               ))}
+                </select><br/>
                 </label><br/>
                 </label><br/>
               <input type="submit" value="Submit" />
