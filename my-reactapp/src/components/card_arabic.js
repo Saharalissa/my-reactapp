@@ -271,13 +271,6 @@ const formik = useFormik({
                     <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.LastName} name="LastName" placeholder="اسم العائلة" className="form-control"/>
                     {formik.touched.LastName && formik.errors.LastName? <div className="error">{formik.errors.LastName}</div>: null}</div></div>
                     </div>
-                    {/* <div className="form_grid">
-                    <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Country} name="Country" placeholder="Country" className="form-control"/>
-                    {formik.touched.Country && formik.errors.Country? <div className="error">{formik.errors.Country}</div>: null}</div></div>
-                    <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/>
-                    {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
-                    </div> */}
-                    
                     <div className="form_grid">
                     <div><div className="form-row">
                     <CustomSelect

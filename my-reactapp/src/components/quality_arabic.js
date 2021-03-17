@@ -18,13 +18,6 @@ var english =require("./quality");
 var arabic =require("./Data_Arabic");
 var strings = new LocalizedStrings({en: english, ar: arabic});
 
-const originalPath = window.location.pathname;
-var pathElements = originalPath.split("/");
-const originalLocalePath = pathElements[1];
-let language = originalLocalePath;
-strings.setLanguage(language);
-console.log(language)
-
 const countries = {
     en: [
       { value: "jo", label: "Jordan" },
@@ -139,6 +132,15 @@ const standardizedCountryCode = (incoming) => {
 
 // This component is for 1_2 smile funnel
 function Quality_Arabic () {
+
+  const originalPath = window.location.pathname;
+  var pathElements = originalPath.split("/");
+  const originalLocalePath = pathElements[1];
+  // let language = originalLocalePath;
+  let language = "ar" ? "ar" : "en";
+  strings.setLanguage(language);
+  console.log(language)
+
     const [active, setActive] = useState("");
     const [select, setSelect] = useState("");
     //queryparams ex: "?country=jo" key(country) value(jo)
@@ -308,12 +310,12 @@ function Quality_Arabic () {
                 {active === "اطباق الأسنان" && <div>
                     {/* section3 web */}
                 <div className="section3">
-                <div className="circle">3</div>
+                <div className="circle">2</div>
                 <p className="secion1_q">.أدخل تفاصيل الاتصال الخاصة بك</p>
                 </div>
                  {/* section3 mobile */}
                 <div className="section1_mobile">
-                    <p className="secion1_q">3.أدخل تفاصيل الاتصال الخاصة بك.</p>
+                    <p className="secion1_q">2.أدخل تفاصيل الاتصال الخاصة بك.</p>
                 </div>
                 <form onSubmit={formik.handleSubmit}>
                         <div className="form_grid">
@@ -360,13 +362,6 @@ function Quality_Arabic () {
                         <div className="form_grid-select"><div className="form-row">
                         <div>
                         <CustomSelect3 
-                        //   style={{
-                        //     width: "100%",
-                        //     marginTop: ".25rem",
-                        //     fontSize: "80%",
-                        //     color: "#dc3545",
-                        //     textAlign: "center"
-                        //   }}
                         className="select"
                         options={countryCodes}
                         value={formik.values.countryCode}
@@ -374,7 +369,6 @@ function Quality_Arabic () {
                         onChange={value=>formik.setFieldValue('countryCode',formik.values.countryCode)}
                          />
                             {console.log(formik.values.countryCode.value)}
-                         
                         {/* <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.City} name="City" placeholder="City"className="form-control"/> */}
                         {formik.touched.City && formik.errors.City? <div className="error">{formik.errors.City}</div>: null}</div></div>
                         
@@ -392,16 +386,16 @@ function Quality_Arabic () {
                     </div>}
                 
                 {active === "لدي مشكلة أخرى" && <div>
-                    {/* section3 web */}
-                <div className="section3">
-                <div className="circle">3</div>
-                <p className="secion1_q">.أدخل تفاصيل الاتصال الخاصة بك</p>
+                <div className = "textAreaGrid"><div className="circle">2</div><textarea className= "textArea" type="text" rows="6" placeholder="اشرح لنا الحالة في عدة كلمات"></textarea></div>
+                {/* section3 web */}
+                    <div className="section3">
+                    <div className="circle">3</div>
+                    <p className="secion1_q">.أدخل تفاصيل الاتصال الخاصة بك</p>
                 </div>
                  {/* section3 mobile */}
                 <div className="section1_mobile">
                     <p className="secion1_q">3.أدخل تفاصيل الاتصال الخاصة بك.</p>
                 </div>
-                <div className = "textAreaGrid"><div className="circle">2</div><textarea className= "textArea" type="text" rows="6" placeholder="اشرح لنا الحالة في عدة كلمات"></textarea></div>
                 <form onSubmit={formik.handleSubmit}>
                         <div className="form_grid">
                         <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.FirstName} name="FirstName" placeholder="الاسم الأول" className="form-control" />

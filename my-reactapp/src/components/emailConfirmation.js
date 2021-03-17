@@ -8,51 +8,6 @@ var english =require("./translations/en.json");
 var arabic =require("./translations/ar.json");
 var string = new LocalizedStrings({en: english, ar: arabic});
 
-const originalPath = window.location.pathname;
-var pathElements = originalPath.split("/"); //[0]=> / [1]=> en or ar
-const originalLocalePath = pathElements[1];
-let language = originalLocalePath;
-
-var direction = language === "ar" ? "rtl" : "ltr";
-string.setLanguage(language);
-
-// const includes = require("lodash/includes");
-// const standardizedCountryCode = (incoming) => {
-//     if (
-//       includes(
-//         ["uae", "ae", "united arab emirates", "arab emirtaes"],
-//         incoming.toLowerCase()
-//       )
-//     ) {
-//       return "ae";
-//     }
- 
-//     if (includes(["sa", "saudi", "saudi arabia"], incoming.toLowerCase())) {
-//       return "sa";
-//     }
- 
-//     if (includes(["jo", "jordan"], incoming.toLowerCase())) {
-//       return "jo";
-//     }
- 
-//     if (includes(["lb", "lebanon"], incoming.toLowerCase())) {
-//       return "lb";
-//     }
- 
-//     if (includes(["iq", "iraq"], incoming.toLowerCase())) {
-//       return "iq";
-//     }
- 
-//     if (includes(["qa", "qatar"], incoming.toLowerCase())) {
-//       return "qa";
-//     }
- 
-//     if (includes(["kw", "kuwait"], incoming.toLowerCase())) {
-//       return "kw";
-//     }
- 
-//     return "n/a";
-//   };
 
 const standardizedCountryCode = (incoming) => {
     if (incoming === 'United Arab Emirates')
@@ -87,6 +42,15 @@ const standardizedCountryCode = (incoming) => {
   let standardCountryCode;
 
 function Confirmation() { 
+
+    const originalPath = window.location.pathname;
+    var pathElements = originalPath.split("/"); //[0]=> / [1]=> en or ar
+    const originalLocalePath = pathElements[1];
+    let language = originalLocalePath;
+
+    var direction = language === "ar" ? "rtl" : "ltr";
+    string.setLanguage(language);
+
     const [exists,setExists] =useState(false)
     const [email,setEmail] =useState("")
     const [country,setCountry] =useState("")
@@ -105,11 +69,11 @@ function handleClick(e) {
     setCountry(res.data.country);
     standardCountryCode= standardizedCountryCode(res.data.country);
     setCity(res.data.city);
-    if(res.data.exists === true) {
-        window.location=`/${language}/confirmation?email=${email}`//fixed, here I had to use /conformation to get the props country and city
-    } else {
-        window.location=`/${language}`
-    }
+    // if(res.data.exists === true) {
+    //     window.location=`/${language}/confirmation?email=${email}`//fixed, here I had to use /conformation to get the props country and city
+    // } else {
+    //     window.location=`/${language}`
+    // }
     console.log(res.data.exists);
     console.log(email);
     }).catch(error => {
@@ -128,10 +92,6 @@ function handleClick(e) {
     setCountry(res.data.country);
     standardCountryCode= standardizedCountryCode(res.data.country);
     setCity(res.data.city);
-    // let postedEmail=
-    // window.location.search ? `${window.location.search}&email=${body.email}`: `?email=${body.email}`;
-    // window.location=`/${language}/confirmation${postedEmail}`
-    // console.log(postedEmail)
     }).catch(error => {
     console.log(error);
          })}, [])

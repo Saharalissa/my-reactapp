@@ -19,12 +19,6 @@ var english =require("./Data");
 var arabic =require("./quality_arabic");
 var strings = new LocalizedStrings({en: english, ar: arabic});
 
-const originalPath = window.location.pathname;
-var pathElements = originalPath.split("/"); //[0]=> / [1]=> en or ar
-const originalLocalePath = pathElements[1];
-let language = originalLocalePath;
-strings.setLanguage(language);
-
 const countries = {
     en: [
       { value: "jo", label: "Jordan" },
@@ -139,6 +133,14 @@ const standardizedCountryCode = (incoming) => {
 
 // This component is for 1_2 smile funnel
 function Quality () {
+
+    const originalPath = window.location.pathname;
+    var pathElements = originalPath.split("/"); //[0]=> / [1]=> en or ar
+    const originalLocalePath = pathElements[1];
+    let language = originalLocalePath;
+    // let language = "ar" ? "ar" : "en";
+    strings.setLanguage(language);
+
     const [active, setActive] = useState("");
     const [select, setSelect] = useState("");
     //queryparams ex: "?country=jo" key(country) value(jo)
@@ -324,12 +326,12 @@ console.log(caces())
                 {active === "Bite-issue" && <div>
                     {/* section3 web */}
                 <div className="section3">
-                <div className="circle">3</div>
+                <div className="circle">2</div>
                 <p className="secion1_q">Enter your contact details.</p>
                 </div>
                  {/* section3 mobile */}
                 <div className="section1_mobile">
-                    <p className="secion1_q">3. Enter your contact details.</p>
+                    <p className="secion1_q">2. Enter your contact details.</p>
                 </div>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="form_grid">
@@ -404,16 +406,16 @@ console.log(caces())
                     
 
                 {active === "OtherIssue" &&  <div>
-                    {/* section3 web */}
-                <div className="section3">
-                <div className="circle">3</div>
-                <p className="secion1_q">Enter your contact details.</p>
-                </div>
-                 {/* section3 mobile */}
-                <div className="section1_mobile">
-                    <p className="secion1_q">3. Enter your contact details.</p>
-                </div>
                 <div className = "textAreaGrid"><div className="circle">2</div><textarea className= "textArea" type="text" rows="6" placeholder="In a few words, tell us about the issue"></textarea></div>
+                      {/* section3 web */}
+                      <div className="section3">
+                          <div className="circle">3</div>
+                          <p className="secion1_q">Enter your contact details.</p>
+                      </div>
+                      {/* section3 mobile */}
+                      <div className="section1_mobile">
+                          <p className="secion1_q">3. Enter your contact details.</p>
+                      </div>
                     <form onSubmit={formik.handleSubmit}>
                         <div className="form_grid">
                         <div className="form-row"><div className="col"><input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.FirstName} name="FirstName" placeholder="First Name" className="form-control" />
@@ -431,8 +433,6 @@ console.log(caces())
                          formik.setFieldValue('Country', value.value)
                          formik.setFieldValue('City' ,cities2[language][value.value][0])
                          formik.setFieldValue('countryCode', formik.values.countryCode) //forEach
-                        // formik.setFieldValue('countryCode',countryCodeFromCountry(value.value))
-                        //  this is to hide the error message
                          formik.setFieldTouched('Country' ,false )
                         }}
                         

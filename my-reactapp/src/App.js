@@ -16,7 +16,8 @@ function App() {
   return (
     <div className="App">
       <Router className="container">
-        <Route exact path="/"><Redirect to="/home" /></Route>
+        {/* <Route exact path="/"><Redirect to="/home" /></Route> */}
+        <Route exact path="/"><Redirect to="/en" /></Route>
         {/* <Route exact path="/:language" component={Languages} key={"/:language"} /> */}
         <Route exact path="/:language" component={Languages_smile}  key={"/:language"} />
         <Route exact path="/home" component={Home} />

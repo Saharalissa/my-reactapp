@@ -16,6 +16,7 @@ console.log(props)
 
 var local = props.match.params.language;
 let language = local ? local : "en";
+// let language = "ar" ? "ar" : "en";
 var direction = language === "ar" ? "rtl" : "ltr";
 string.setLanguage(language);
 
@@ -30,10 +31,10 @@ string.setLanguage(language);
             }
 
            <div>{
-               (language === "en")?(
-               <Quality/>
-               ) : (
+               (language === "ar")?(
                <Quality_Arabic/>
+               ) : (
+               <Quality/>
                )
            }</div>
 

@@ -826,5 +826,31 @@ box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
+    @media screen and (max-width:839px) {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+.clinic-form-image-grid{
+    display: grid;
+    grid-template-columns:0.25fr 2fr 1fr 0.25fr;
+    grid-gap: 1em;
+    direction: direction;
+    @media screen and (max-width:839px) {
+        // display: grid;
+        // grid-template-columns: 1fr;
+        // direction: direction;
+    }
 }
 
+.clinic-form-image-grid2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+    direction: direction;
+    @media screen and (max-width:839px) {
+        display: grid;
+        grid-template-columns: 1fr;
+        direction: direction;
+    }
+}

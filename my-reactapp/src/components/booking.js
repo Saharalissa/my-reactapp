@@ -8,7 +8,7 @@ var string = new LocalizedStrings({en: english, ar: arabic});
 const originalPath = window.location.pathname;
 var pathElements = originalPath.split("/"); //[0]=> / [1]=> en or ar
 const originalLocalePath = pathElements[1];
-let language = originalLocalePath;
+let language = originalLocalePath === "ar"? "ar": "en";
 
 var direction = language === "ar" ? "rtl" : "ltr";
 string.setLanguage(language);
@@ -33,7 +33,7 @@ export default function Booking() {
                 cursor: 'pointer',
                 fontWeight: '700',
                 borderBlock: 'black'}} /><br/>
-      <a href='/en'>{string.ty_cta_homePage}</a>
+      <a href={`/${language}`}>{string.ty_cta_homePage}</a>
    </div>
   
   )
