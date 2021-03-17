@@ -333,8 +333,8 @@ const formik = useFormik({
                    </div>
                     <div className="form_grid">
                         <div className= "form-button">
-                            <button type="submit" className="submit-form-button-1" onClick={() => {console.log("malocclusionType:",title); console.log("caseSeverity:",severity); console.log("caseType:", type ); }}>Get Results</button>
-                            <div className="disclaimer_text">We only treat patients age 16 and up.</div>
+                            <button type="submit" className="submit-form-button-1" onClick={() => {console.log("malocclusionType:",title); console.log("caseSeverity:",severity); console.log("caseType:", type ); }}>احصل على نتائج التقييم</button>
+                            <div className="disclaimer_text">نعالج فقط من أعمارهم 16 سنة أو أكثر</div>
                         </div>
                         <div></div>
                     </div>
