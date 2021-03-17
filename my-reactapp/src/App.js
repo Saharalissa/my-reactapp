@@ -10,6 +10,7 @@ import Quality from './components/quality';
 import Quality_Arabic from './components/quality_arabic';
 import Confirmation from './components/emailConfirmation';
 import Appointment from './components/appointment';
+import Booking from './components/booking';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/home" component={Home} />
         <Route exact path="/:language/confirmation" component={Confirmation} />
         <Route exact path="/:language/appointment" component={Appointment} />
+        <Route exact path="/:language/booking" component={Booking} />
         {/* <Route exact path="/quality" component={Quality} />
         <Route exact path="/quality_arabic" component={Quality_Arabic} /> */}
       </Router>

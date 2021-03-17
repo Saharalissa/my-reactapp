@@ -109,11 +109,6 @@ function handleClick(e) {
         window.location=`/${language}/confirmation?email=${email}`//fixed, here I had to use /conformation to get the props country and city
     } else {
         window.location=`/${language}`
-        // if (language = 'en'){
-        //    window.location=`/en` 
-        // }else {
-        //    window.location=`/ar` 
-        // }   
     }
     console.log(res.data.exists);
     console.log(email);
