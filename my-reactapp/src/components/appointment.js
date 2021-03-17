@@ -12,7 +12,6 @@ var english =require("./translations/en_clinic.json");
 var arabic =require("./translations/ar_clinic.json");
 var string = new LocalizedStrings({en: english, ar: arabic});
 
-
 const countries = {
   en: [
     { value: "jo", label: "Jordan" },
