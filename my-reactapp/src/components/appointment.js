@@ -65,7 +65,6 @@ function Appointment(props) {
 console.log(selectedDate)
 console.log(clinicName)
 console.log(working_time)
-console.log(x)
 console.log(not_working_time)
 console.log(clinic)
 console.log(clinics)
@@ -115,19 +114,7 @@ function handleSubmit(e) {
           <div style={{ fontSize:"40px"}}>{string.appointment_header_from_funnel}</div><br/>
           <div style={{ fontSize:"16px"}}>{string.appointment_desc_from_funnel}</div><br/>
           
-            <div className="clinic-form-image-grid" 
-            style={{
-                display: 'grid',
-                gridTemplateColumns: '0.5fr 4fr 1fr 0.5fr',
-                gridGap: '1em',
-                direction: direction,
-                '@media screen and (max-width:839px)': {
-                  display: 'grid',
-                  gridTemplateColumns: '1fr',
-                  direction: 'direction',
-              }
-              }}
-              >
+            <div className="clinic-form-image-grid">
                 <div></div>
                 <div><img
               src={`http://d2hfemkvihnw98.cloudfront.net${string[country]?.city[city][clinicName].image}`}
@@ -158,7 +145,7 @@ function handleSubmit(e) {
                   <DatePicker selected={selectedDate} onChange={date => {
                   console.log( "day number", date.getDay())
                   console.log(string[country].city[city][clinicName].working_hours[date.getDay().toString()])
-                  setDay(date.getDay())
+                  setDay(date.getDay().toString())
                   setSelectedDate(date)}}
                    dateFormat = 'E-dd/MM/yy'
                    minDate = {new Date()}
@@ -196,31 +183,12 @@ function handleSubmit(e) {
               <div></div>
             </div>
             {/* {props.country}<br/>{props.city}<br/> */}     
-            {/* {string.ae.clincNameOption} */}
-            {/* {string[country]?.clincNameOption} */}
-            {/* {string[country]? string[country].clincNameOption:""} */ }
-            {/* same meaning as the above */}
-            {/* {string[country]?.city[city].clincNameOption} */}
-
-            <div
-             style={{
-                display: 'grid',
-                gridTemplateColumns: '0.25fr 2fr 1fr 0.25fr',
-                gridGap: '1em',
-                direction: direction,
-              }}
-              >
+             <div
+              className="clinic-form-image-grid">
                 <div></div>
-                <div>
+                  <div>
                   <div style={{textAlign: 'start', fontWeight: 'bold'}}>{string.clinic_include}</div><br/>
-                  <div className="clinic-form-image-grid3" 
-                  style={{
-                  display: 'grid',
-                  gridTemplateColumns: ' 1fr 1fr 1fr',
-                  gridGap: '1em',
-                  direction: direction,
-                  }}
-                  >
+                  <div className="clinic-form-image-grid2">
                     <div> <img src={"https://d2hfemkvihnw98.cloudfront.net/home-medal.svg"} style = {{width: '30%'}}/><br/>
                     {string.clinic_include_h1}
                     <p>{string.clinic_include_p1}</p>

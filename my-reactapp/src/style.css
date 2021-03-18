@@ -7,7 +7,6 @@
 body {
   max-width: 1400px;
   margin: 0 auto;
-  background-color: brown;
 }
 
 h2 {
@@ -1140,7 +1139,6 @@ h2::after {
       grid-template-columns: 0.25fr 2fr 1fr 0.25fr;
   grid-gap: 1em;
   direction: direction;
-  background-color: brown;
 }
 
 @media screen and (max-width: 839px) {
@@ -1164,6 +1162,8 @@ h2::after {
 
 @media screen and (max-width: 839px) {
   .clinic-form-image-grid2 {
+    margin: 0 auto;
+    width: 40%;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr;

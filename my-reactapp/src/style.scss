@@ -837,9 +837,9 @@ box-sizing: border-box;
     grid-gap: 1em;
     direction: direction;
     @media screen and (max-width:839px) {
-        // display: grid;
-        // grid-template-columns: 1fr;
-        // direction: direction;
+        display: grid;
+        grid-template-columns: 1fr;
+        direction: direction;
     }
 }
 
@@ -849,6 +849,8 @@ box-sizing: border-box;
     grid-gap: 1em;
     direction: direction;
     @media screen and (max-width:839px) {
+        margin: 0 auto;
+        width: 40%;
         display: grid;
         grid-template-columns: 1fr;
         direction: direction;
