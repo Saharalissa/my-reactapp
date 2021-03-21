@@ -5,12 +5,12 @@ var arabic =require("./translations/ar_clinic.json");
 var string = new LocalizedStrings({en: english, ar: arabic});
 
 
-const originalPath = window.location.pathname;
-var pathElements = originalPath.split("/"); //[0]=> / [1]=> en or ar
-const originalLocalePath = pathElements[1];
-let language = originalLocalePath === "ar"? "ar": "en";
+const path = window.location.pathname;
+var pathElements = path.split("/"); //[0]=> / [1]=> en or ar
+const localPath = pathElements[1];
+let language = localPath === "ar"? "ar": "en";
 
-var direction = language === "ar" ? "rtl" : "ltr";
+var dir = language === "ar" ? "rtl" : "ltr";
 string.setLanguage(language);
 
 export default function Booking() {
